@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-19T12:32:17.814Z",
+  "collection": [
+    {
+      "id": "lat-aon2",
+      "house": "Lattafa",
+      "name": "Art Of Nature II",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "Autumn / Winter",
+      "occasion": "Casual",
+      "notes": "bergamot, cardamom, fruity notes, patchouli, cedarwood, amber, musk",
+      "tags": [
+        "fruity",
+        "warm",
+        "oriental"
+      ]
+    },
+    {
+      "id": "arm-king",
+      "house": "Armaf",
+      "name": "King",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "Spring / Summer",
+      "occasion": "Versatile",
+      "notes": "lemon, bergamot, lavender, pepper, leather, cedarwood, patchouli",
+      "tags": [
+        "fresh",
+        "masculine",
+        "aromatic"
+      ]
+    },
+    {
+      "id": "her-tdh",
+      "house": "Hermès",
+      "name": "Terre d'Hermès",
+      "type": "designer",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Office",
+      "notes": "orange, grapefruit, flint, vetiver, cedar, benzoin, patchouli",
+      "tags": [
+        "office",
+        "earthy",
+        "classic",
+        "signature"
+      ]
+    },
+    {
+      "id": "ray-ita",
+      "house": "Rayhaan",
+      "name": "Italia",
+      "type": "clone",
+      "family": "Fresh / Citrus",
+      "season": "Summer",
+      "occasion": "Casual",
+      "notes": "grapefruit, bergamot, ozonic notes, violet leaf, marine notes, java vetiver, musk",
+      "tags": [
+        "summer",
+        "citrus-bomb",
+        "fresh"
+      ]
+    },
+    {
+      "id": "roc-mou",
+      "house": "Rochas",
+      "name": "Moustache Eau de Parfum",
+      "type": "designer",
+      "family": "Spicy / Sensual",
+      "season": "Autumn / Winter",
+      "occasion": "Date Night",
+      "notes": "pink pepper, mandarin orange, atlas cedar, patchouli, vanilla, benzoin",
+      "tags": [
+        "date-night",
+        "elegant",
+        "sweet",
+        "warm"
+      ]
+    },
+    {
+      "id": "ras-hwf",
+      "house": "Rasasi",
+      "name": "Hawas Fire",
+      "type": "middle-eastern",
+      "family": "Spicy / Sensual",
+      "season": "All Year",
+      "occasion": "Date Night",
+      "notes": "apple, bergamot, cinnamon, patchouli, praline, amber, oakmoss, musk",
+      "tags": [
+        "beast-mode",
+        "loud",
+        "sweet",
+        "compliment-getter"
+      ]
+    },
+    {
+      "id": "arm-cdnim-le24",
+      "house": "Armaf",
+      "name": "Club de Nuit Intense Man Limited Edition Parfum 2024",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Versatile",
+      "notes": "pineapple, lemon, lime, blackcurrant, birch, jasmine, patchouli, musk, ambergris",
+      "tags": [
+        "signature",
+        "versatile",
+        "beast-mode",
+        "smoky"
+      ]
+    },
+    {
+      "id": "arm-cdnic",
+      "house": "Armaf",
+      "name": "Club de Nuit Blue Iconic",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Office",
+      "notes": "grapefruit, mint, lemon, pink pepper, ginger, nutmeg, melon, incense, cedar, sandalwood",
+      "tags": [
+        "office",
+        "versatile",
+        "fresh",
+        "all-year"
+      ]
+    },
+    {
+      "id": "afn-lynf",
+      "house": "Afnan",
+      "name": "Lynked Freedom",
+      "type": "middle-eastern",
+      "family": "Fougère / Classic",
+      "season": "Spring / Summer",
+      "occasion": "Casual",
+      "notes": "bergamot, lavender, fresh spices, aromatic notes, cedarwood, white musk, amber",
+      "tags": [
+        "clean",
+        "fresh",
+        "casual",
+        "daily"
+      ]
+    },
+    {
+      "id": "afn-supcoll",
+      "house": "Afnan",
+      "name": "Supremacy Collector's Edition Pour Homme",
+      "type": "middle-eastern",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Versatile",
+      "notes": "pineapple, apple, bergamot, blackcurrant, birch, patchouli, jasmine, oakmoss, musk",
+      "tags": [
+        "fruity",
+        "elegant",
+        "versatile"
+      ]
+    },
+    {
+      "id": "ajm-evg",
+      "house": "Ajmal",
+      "name": "Evoke Gold For Him",
+      "type": "clone",
+      "family": "Amber / Floral",
+      "season": "All Year",
+      "occasion": "Office",
+      "notes": "neroli, black pepper, iris, amber, geranium, cedarwood, patchouli",
+      "tags": [
+        "office",
+        "soapy",
+        "clean",
+        "professional"
+      ]
+    },
+    {
+      "id": "afn-turb",
+      "house": "Afnan",
+      "name": "Turathi Blue",
+      "type": "clone",
+      "family": "Fresh / Citrus",
+      "season": "Spring / Summer",
+      "occasion": "Versatile",
+      "notes": "grapefruit, citruses, amber, woodsy notes, musk, patchouli",
+      "tags": [
+        "summer",
+        "fresh",
+        "beast-mode",
+        "citrus-bomb"
+      ]
+    },
+    {
+      "id": "lat-asad-elix",
+      "house": "Lattafa",
+      "name": "Asad Elixir",
+      "type": "middle-eastern",
+      "family": "Spicy / Sensual",
+      "season": "Winter",
+      "occasion": "Formal / Evening",
+      "notes": "licorice, black pepper, cloves, lavender, amber, vanilla, patchouli, sandalwood",
+      "tags": [
+        "winter",
+        "dark",
+        "heavy",
+        "beast-mode"
+      ]
+    },
+    {
+      "id": "arm-cdnlh",
+      "house": "Armaf",
+      "name": "Club De Nuit Lionheart Man",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Casual",
+      "notes": "ginger, bergamot, clary sage, spices, leather, cedarwood, musk",
+      "tags": [
+        "masculine",
+        "spicy",
+        "casual"
+      ]
+    },
+    {
+      "id": "arm-cdnpr",
+      "house": "Armaf",
+      "name": "Club de Nuit Precieux I",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Formal / Evening",
+      "notes": "pineapple, pear, bergamot, pink pepper, jasmine, anise, oakmoss, leather, amber, vanilla",
+      "tags": [
+        "luxurious",
+        "evening",
+        "rich",
+        "complex"
+      ]
+    },
+    {
+      "id": "afn-rarec",
+      "house": "Afnan",
+      "name": "Rare Carbon",
+      "type": "clone",
+      "family": "Leather",
+      "season": "Autumn / Winter",
+      "occasion": "Formal / Evening",
+      "notes": "leather, violet leaf, nutmeg, rose, amber, cedarwood, sandalwood",
+      "tags": [
+        "leather",
+        "dark",
+        "masculine",
+        "evening"
+      ]
+    }
+  ]
+}
