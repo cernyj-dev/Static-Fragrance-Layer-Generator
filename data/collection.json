@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-19T13:00:00.000Z",
+  "updatedAt": "2026-06-19T12:57:23.173Z",
   "collection": [
     {
       "id": "lat-aon2",
@@ -35,8 +35,8 @@
     },
     {
       "id": "her-tdh",
-      "house": "Hermès",
-      "name": "Terre d'Hermès",
+      "house": "Hermes",
+      "name": "Terre d'Hermes",
       "type": "designer",
       "family": "Woody / Aromatic",
       "season": "All Year",
@@ -133,7 +133,7 @@
       "house": "Afnan",
       "name": "Freedom",
       "type": "middle-eastern",
-      "family": "Fougère / Classic",
+      "family": "FougÃ¨re / Classic",
       "season": "Spring / Summer",
       "occasion": "Casual",
       "notes": "bergamot, grapefruit, sage, cardamom, juniper berry, lavender, caramel, oriental notes, vetiver",
@@ -194,7 +194,7 @@
     {
       "id": "lat-asad-elix",
       "house": "Lattafa",
-      "name": "Asad Elixir / Elixir أسد",
+      "name": "Asad Elixir / Elixir Ø£Ø³Ø¯",
       "type": "middle-eastern",
       "family": "Spicy / Sensual",
       "season": "Winter",
