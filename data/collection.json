@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-19T12:32:17.814Z",
+  "updatedAt": "2026-06-19T12:34:02.233Z",
   "collection": [
     {
       "id": "lat-aon2",
@@ -53,15 +53,11 @@
       "house": "Rayhaan",
       "name": "Italia",
       "type": "clone",
-      "family": "Fresh / Citrus",
-      "season": "Summer",
+      "family": "Sweet / Gourmand",
+      "season": "Autumn / Winter",
       "occasion": "Casual",
-      "notes": "grapefruit, bergamot, ozonic notes, violet leaf, marine notes, java vetiver, musk",
-      "tags": [
-        "summer",
-        "citrus-bomb",
-        "fresh"
-      ]
+      "notes": "",
+      "tags": []
     },
     {
       "id": "roc-mou",
