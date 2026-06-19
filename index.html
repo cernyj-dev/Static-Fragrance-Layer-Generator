@@ -148,6 +148,77 @@
       color: var(--amber);
     }
 
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--mist);
+      cursor: pointer;
+      font-family: var(--ff-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .sync-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--mist);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .sync-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--mist);
+      flex-shrink: 0;
+    }
+
+    .sync-status.ok {
+      color: #9bd49b;
+      border-color: rgba(155, 212, 155, 0.24);
+    }
+
+    .sync-status.ok .sync-status-dot {
+      background: #9bd49b;
+    }
+
+    .sync-status.warn {
+      color: #d4a94a;
+      border-color: rgba(212, 169, 74, 0.24);
+    }
+
+    .sync-status.warn .sync-status-dot {
+      background: #d4a94a;
+    }
+
+    .sync-status.bad {
+      color: #d48a8a;
+      border-color: rgba(212, 138, 138, 0.24);
+    }
+
+    .sync-status.bad .sync-status-dot {
+      background: #d48a8a;
+    }
+
     /* ── FILTERS ── */
     .filters {
       padding: 16px 40px;
@@ -165,6 +236,13 @@
       text-transform: uppercase;
       color: var(--mist);
       margin-right: 4px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
     }
 
     .chip {
@@ -539,6 +617,32 @@
       color: var(--mist);
     }
 
+    .form-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-title {
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--parchment);
+      line-height: 1;
+    }
+
+    .form-subtitle {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      white-space: nowrap;
+    }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -631,6 +735,27 @@
 
     .btn-delete:hover {
       color: #c0392b !important;
+    }
+
+    .btn-edit {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      background: none;
+      border: none;
+      color: transparent;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .card:hover .btn-edit {
+      color: rgba(212, 169, 74, 0.55);
+    }
+
+    .btn-edit:hover {
+      color: var(--gold) !important;
     }
 
     /* ── SPRAY MAP ── */
@@ -804,8 +929,8 @@
       }
 
       .header-actions {
-        display: grid;
-        grid-template-columns: 1fr auto auto;
+        display: flex;
+        flex-wrap: wrap;
         gap: 8px;
         align-items: center;
       }
@@ -813,7 +938,15 @@
       #search {
         width: 100%;
         font-size: 16px;
+        flex: 1 1 100%;
         /* Prevent iOS zoom on focus */
+      }
+
+      .btn-export,
+      .btn-secondary,
+      .btn-add {
+        flex: 1 1 calc(50% - 4px);
+        text-align: center;
       }
 
       .btn-export {
@@ -830,6 +963,7 @@
         font-size: 18px;
         font-weight: 300;
         letter-spacing: 0;
+        flex: 0 0 38px;
       }
 
       .btn-add::after {
@@ -1048,9 +1182,17 @@
     <div class="header-actions">
       <input type="text" id="search" placeholder="Search fragrances…" oninput="renderGrid()" />
       <button class="btn-export" onclick="exportForFriend()">↓ Share</button>
+      <button class="btn-secondary" onclick="exportCollectionJson()">Backup JSON</button>
+      <button class="btn-secondary" onclick="triggerImportCollection()">Restore JSON</button>
+      <button class="btn-secondary" onclick="openSyncModal()">GitHub Sync</button>
+      <span class="sync-status warn" id="syncStatus"><span class="sync-status-dot"></span><span id="syncStatusText">Sync
+          off</span></span>
       <button class="btn-add" onclick="openAddModal()">+ Add Fragrance</button>
     </div>
   </header>
+
+  <input type="file" id="importCollectionInput" accept="application/json" hidden
+    onchange="importCollectionFromFile(event)" />
 
   <div class="filters">
     <span class="filter-label">Filter</span>
@@ -1059,10 +1201,10 @@
     <button class="chip" data-filter="middle-eastern" onclick="setFilter('middle-eastern',this)">Middle Eastern</button>
     <button class="chip" data-filter="clone" onclick="setFilter('clone',this)">Clones</button>
     <button class="chip" data-filter="niche" onclick="setFilter('niche',this)">Niche</button>
-    <button class="chip" data-filter="summer" onclick="setFilter('summer',this)">Summer</button>
-    <button class="chip" data-filter="winter" onclick="setFilter('winter',this)">Winter</button>
-    <button class="chip" data-filter="date" onclick="setFilter('date',this)">Date Night</button>
-    <button class="chip" data-filter="office" onclick="setFilter('office',this)">Office</button>
+    <span class="filter-label">Season</span>
+    <div class="filter-group" id="seasonFilters"></div>
+    <span class="filter-label">Occasion</span>
+    <div class="filter-group" id="occasionFilters"></div>
   </div>
 
   <div class="stats">
@@ -1124,8 +1266,8 @@
   <div class="modal-overlay" id="addOverlay" onclick="handleOverlayClick(event,'addOverlay')">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-house">Collection</div>
-        <div class="modal-name">Add Fragrance</div>
+        <div class="modal-house" id="formActionSubtitle">Collection</div>
+        <div class="modal-name" id="formActionTitle">Add Fragrance</div>
         <button class="modal-close" onclick="closeModal('addOverlay')">✕</button>
       </div>
       <div class="modal-body">
@@ -1165,25 +1307,11 @@
           </div>
           <div class="form-group">
             <label>Season</label>
-            <select id="f-season">
-              <option value="All Year">All Year</option>
-              <option value="Spring / Summer">Spring / Summer</option>
-              <option value="Autumn / Winter">Autumn / Winter</option>
-              <option value="Summer">Summer</option>
-              <option value="Winter">Winter</option>
-            </select>
+            <select id="f-season"></select>
           </div>
           <div class="form-group">
             <label>Occasion</label>
-            <select id="f-occasion">
-              <option value="Versatile">Versatile</option>
-              <option value="Office">Office</option>
-              <option value="Date Night">Date Night</option>
-              <option value="Casual">Casual</option>
-              <option value="Formal / Evening">Formal / Evening</option>
-              <option value="Sport / Active">Sport / Active</option>
-              <option value="Summer / Holiday">Summer / Holiday</option>
-            </select>
+            <select id="f-occasion"></select>
           </div>
           <div class="form-group full">
             <label>Key Notes (comma separated)</label>
@@ -1196,7 +1324,51 @@
         </div>
         <div class="form-actions">
           <button class="btn-cancel" onclick="closeModal('addOverlay')">Cancel</button>
-          <button class="btn-add" onclick="addFragrance()">Add to Collection</button>
+          <button class="btn-add" id="formPrimaryAction" data-mode="add" onclick="addFragrance()">Add to
+            Collection</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNC MODAL -->
+  <div class="modal-overlay" id="syncOverlay" onclick="handleOverlayClick(event,'syncOverlay')">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-house">GitHub</div>
+        <div class="modal-name">Sync Settings</div>
+        <button class="modal-close" onclick="closeModal('syncOverlay')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Repository Owner</label>
+            <input type="text" id="sync-owner" placeholder="your-github-username" />
+          </div>
+          <div class="form-group full">
+            <label>Repository Name</label>
+            <input type="text" id="sync-repo" placeholder="your-repo-name" />
+          </div>
+          <div class="form-group">
+            <label>Branch</label>
+            <input type="text" id="sync-branch" placeholder="main" />
+          </div>
+          <div class="form-group">
+            <label>JSON Path</label>
+            <input type="text" id="sync-path" placeholder="data/collection.json" />
+          </div>
+          <div class="form-group full">
+            <label>GitHub Token</label>
+            <input type="password" id="sync-token" placeholder="fine-grained PAT with Contents read/write" />
+          </div>
+        </div>
+        <div class="form-actions" style="justify-content:space-between;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="pullFromGitHub()">Pull</button>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
+            <button class="btn-cancel" onclick="closeModal('syncOverlay')">Close</button>
+            <button class="btn-add" onclick="saveSyncSettings()">Save Settings</button>
+            <button class="btn-add" onclick="pushToGitHub()">Push Now</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1267,39 +1439,6 @@
     ];
 
     // ── INITIAL COLLECTION DATA ─────────────────────────────────────────────
-    /*
-    const DEFAULT_COLLECTION = [
-      // ── DESIGNER ORIGINALS
-      { id:'tf-np',   house:'Tom Ford',     name:'Neroli Portofino',    type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'neroli, citrus, sea breeze, amber',   tags:['summer','holiday','fresh','compliment-getter'] },
-      { id:'tf-ow',   house:'Tom Ford',     name:'Oud Wood',            type:'designer',        family:'Woody / Aromatic',    season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn','date'] },
-      { id:'tf-sb',   house:'Tom Ford',     name:'Soleil Blanc',        type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'cardamom, ylang ylang, benzoin, musk', tags:['summer','holiday','resort'] },
-      { id:'bdc',     house:'Chanel',       name:'Bleu de Chanel',      type:'designer',        family:'Woody / Aromatic',    season:'All Year',          occasion:'Office',             notes:'grapefruit, ginger, sandalwood, cedar', tags:['office','versatile','all-year'] },
-      { id:'hbb',     house:'Hugo Boss',    name:'Boss Bottled',        type:'designer',        family:'Fougère / Classic',   season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood, vetiver', tags:['office','classic','versatile'] },
-      { id:'hbbb',    house:'Hugo Boss',    name:'Boss Bottled Beyond', type:'designer',        family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Casual',             notes:'fig, woody notes, amber, musk',       tags:['casual','sweet','autumn'] },
-      { id:'jpg',     house:'Jean Paul Gaultier', name:'Scandal Pour Homme', type:'designer',  family:'Amber / Floral',      season:'Autumn / Winter',   occasion:'Date Night',         notes:'blood orange, leather, tonka bean',   tags:['date','evening','autumn','mini'] },
-      // ── MIDDLE EASTERN / NICHE
-      { id:'mar',     house:'Arabiyat Prestige', name:'Marwa',           type:'middle-eastern', family:'Oriental / Oud',      season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'oud, musk, amber, sandalwood',        tags:['evening','formal','oud'] },
-      { id:'asad',    house:'Lattafa',      name:'Asad Bourbon',        type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'bourbon, vanilla, amber, musk',       tags:['date','evening','sweet','winter'] },
-      { id:'kham',    house:'Lattafa',      name:'Khamrah',             type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'cardamom, oud, vanilla, amber, boozy', tags:['date','winter','gourmand','oud'] },
-      { id:'9pm',     house:'Afnan',        name:'9PM',                 type:'middle-eastern', family:'Spicy / Sensual',     season:'Autumn / Winter',   occasion:'Date Night',         notes:'apple, cinnamon, vetiver, vanilla, amber', tags:['date','evening','compliment-getter'] },
-      { id:'absg',    house:'Auto Biography', name:'Supreme Gold',      type:'middle-eastern', family:'Leather',             season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'leather, spice, amber, oud',          tags:['date','formal','evening','leather'] },
-      { id:'neriv',   house:'Neroli Riviera', name:'Neroli Riviera',    type:'niche',          family:'Fresh / Citrus',      season:'Spring / Summer',   occasion:'Casual',             notes:'neroli, bergamot, citrus, musk',      tags:['casual','fresh','spring','summer'] },
-      // ── ARMAF
-      { id:'aodm',    house:'Armaf',        name:'Odyssey Mega',        type:'middle-eastern', family:'Aquatic / Marine',    season:'Spring / Summer',   occasion:'Sport / Active',     notes:'bergamot, lavender, marine, cedar',   tags:['sport','fresh','summer','aquatic'] },
-      { id:'aoms',    house:'Armaf',        name:'Odyssey Mandarin Sky', type:'middle-eastern', family:'Fresh / Citrus',    season:'Spring / Summer',   occasion:'Casual',             notes:'mandarin, citrus, musk, light woods', tags:['casual','fresh','summer','sport'] },
-      // ── THE ESSENCE VAULT
-      { id:'tev-git', house:'The Essence Vault', name:'Green Irish Tweed (Clone)', type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'violet leaf, iris, sandalwood, amber', tags:['office','classic','green','elegant'] },
-      { id:'tev-sauv',house:'The Essence Vault', name:'Sauvage Dior (Clone)',      type:'clone', family:'Woody / Aromatic',  season:'All Year',          occasion:'Office',             notes:'bergamot, ambroxan, pepper, woods',   tags:['office','versatile','fresh','woods'] },
-      { id:'tev-boss',house:'The Essence Vault', name:'Boss Bottled (Clone)',      type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood',         tags:['office','classic'] },
-      { id:'tev-eros',house:'The Essence Vault', name:'Eros Versace (Clone)',      type:'clone', family:'Spicy / Sensual',   season:'Spring / Summer',   occasion:'Date Night',         notes:'mint, tonka bean, vanilla, cedar',    tags:['date','summer','fresh','spicy'] },
-      { id:'tev-ouw', house:'The Essence Vault', name:'Oud Wood (Clone)',          type:'clone', family:'Woody / Aromatic',  season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn'] },
-      { id:'tev-br',  house:'The Essence Vault', name:'BR540 Clone (461)',         type:'clone', family:'Amber / Floral',    season:'All Year',          occasion:'Date Night',         notes:'jasmine, saffron, ambergris, cedar',  tags:['date','evening','floral','amber'] },
-      // ── OTHER
-      { id:'jli',     house:'Alhambra',     name:'Jean Lowe Immortal',  type:'middle-eastern', family:'Woody / Aromatic',   season:'All Year',          occasion:'Versatile',          notes:'aquatic, woods, musk, amber',         tags:['versatile','casual'] },
-      { id:'aodmw',   house:'Oud Wood',     name:'Oud Wood (Clone box)',type:'clone',           family:'Woody / Aromatic',   season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, woods',              tags:['woody','office'] },
-      { id:'khalis',  house:'Khalis',       name:'Khalis (mini)',        type:'middle-eastern', family:'Oriental / Oud',     season:'Autumn / Winter',   occasion:'Evening',            notes:'oud, amber, musk',                    tags:['evening','oud','mini'] },
-    ];
-    */
 
     // ── INITIAL COLLECTION DATA ─────────────────────────────────────────────
     const DEFAULT_COLLECTION = [
@@ -1482,32 +1621,404 @@
     ];
 
     const SEASON_TYPES = [
-      "Summer", "Winter", "Autumn / Winter", "Spring / Summer", "All Year"
-    ]
+      {
+        value: 'All Year',
+        label: 'All Year',
+        aliases: ['all year', 'all-year']
+      },
+      {
+        value: 'Spring / Summer',
+        label: 'Spring / Summer',
+        aliases: ['spring', 'summer']
+      },
+      {
+        value: 'Autumn / Winter',
+        label: 'Autumn / Winter',
+        aliases: ['autumn', 'winter']
+      },
+      {
+        value: 'Summer',
+        label: 'Summer',
+        aliases: ['spring / summer']
+      },
+      {
+        value: 'Winter',
+        label: 'Winter',
+        aliases: ['autumn / winter']
+      }
+    ];
 
     const OCCASION_TYPES = [
-      "Versatile",
-      "Office",
-      "Date Night",
-      "Casual",
-      "Formal / Evening",
-      "Sport / Active",
-      "Summer / Holiday"
-    ]
+      {
+        value: 'Versatile',
+        label: 'Versatile',
+        aliases: ['daily', 'signature']
+      },
+      {
+        value: 'Office',
+        label: 'Office',
+        aliases: ['professional', 'work']
+      },
+      {
+        value: 'Date Night',
+        label: 'Date Night',
+        aliases: ['evening', 'formal / evening']
+      },
+      {
+        value: 'Casual',
+        label: 'Casual',
+        aliases: ['everyday']
+      },
+      {
+        value: 'Formal / Evening',
+        label: 'Formal / Evening',
+        aliases: ['date night']
+      },
+      {
+        value: 'Sport / Active',
+        label: 'Sport / Active',
+        aliases: ['gym', 'active']
+      },
+      {
+        value: 'Summer / Holiday',
+        label: 'Summer / Holiday',
+        aliases: ['vacation', 'holiday']
+      }
+    ];
 
     // ── STATE ────────────────────────────────────────────────────────────────
     let collection = [];
     let activeFilter = 'all';
     let currentFragrance = null;
+    let editingId = null;
+    let remoteSha = null;
+    let syncInFlight = false;
+    let syncConfig = {
+      enabled: false,
+      owner: '',
+      repo: '',
+      branch: 'main',
+      path: 'data/collection.json',
+      token: ''
+    };
+
+    const SYNC_CONFIG_KEY = 'theShelfSync';
+    const SYNC_FILE_VERSION = 1;
+
+    function loadSyncConfig() {
+      const stored = localStorage.getItem(SYNC_CONFIG_KEY);
+      if (!stored) return;
+
+      try {
+        const parsed = JSON.parse(stored);
+        syncConfig = { ...syncConfig, ...parsed };
+      } catch (error) {
+        localStorage.removeItem(SYNC_CONFIG_KEY);
+      }
+    }
+
+    function saveSyncConfig() {
+      localStorage.setItem(SYNC_CONFIG_KEY, JSON.stringify(syncConfig));
+      setSyncStatus(syncConfig.enabled ? 'warn' : 'warn', syncConfig.enabled ? 'Sync ready' : 'Sync off');
+    }
+
+    function setSyncStatus(kind, text) {
+      const statusEl = document.getElementById('syncStatus');
+      const textEl = document.getElementById('syncStatusText');
+      if (!statusEl || !textEl) return;
+
+      statusEl.classList.remove('ok', 'warn', 'bad');
+      statusEl.classList.add(kind);
+      textEl.textContent = text;
+    }
+
+    function getSyncFileUrl() {
+      const path = (syncConfig.path || '').split('/').map(segment => encodeURIComponent(segment)).join('/');
+      return `https://api.github.com/repos/${encodeURIComponent(syncConfig.owner)}/${encodeURIComponent(syncConfig.repo)}/contents/${path}?ref=${encodeURIComponent(syncConfig.branch || 'main')}`;
+    }
+
+    function getSyncHeaders() {
+      const headers = {
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      };
+
+      if (syncConfig.token) {
+        headers.Authorization = `Bearer ${syncConfig.token}`;
+      }
+
+      return headers;
+    }
+
+    function cloneCollection() {
+      return collection.map(item => ({ ...item, tags: Array.isArray(item.tags) ? [...item.tags] : [] }));
+    }
+
+    function buildCollectionPayload() {
+      return {
+        version: SYNC_FILE_VERSION,
+        updatedAt: new Date().toISOString(),
+        collection: cloneCollection()
+      };
+    }
+
+    function normalizeCollectionPayload(payload) {
+      if (Array.isArray(payload)) {
+        return { collection: payload };
+      }
+
+      if (payload && Array.isArray(payload.collection)) {
+        return {
+          collection: payload.collection,
+          updatedAt: payload.updatedAt || null,
+          version: payload.version || null
+        };
+      }
+
+      return { collection: [] };
+    }
+
+    async function fetchRemoteCollection() {
+      const response = await fetch(getSyncFileUrl(), { headers: getSyncHeaders() });
+
+      if (response.status === 404) {
+        return { exists: false, collection: [] };
+      }
+
+      if (!response.ok) {
+        throw new Error(`GitHub fetch failed: ${response.status}`);
+      }
+
+      const data = await response.json();
+      remoteSha = data.sha || null;
+
+      const decoded = JSON.parse(atob(String(data.content || '').replace(/\s+/g, '')) || '{}');
+      const normalized = normalizeCollectionPayload(decoded);
+      return { exists: true, ...normalized };
+    }
+
+    async function pullFromGitHub(options = {}) {
+      if (!syncConfig.enabled) {
+        if (!options.silent) setSyncStatus('warn', 'Sync off');
+        return false;
+      }
+
+      if (syncInFlight) return false;
+      syncInFlight = true;
+
+      try {
+        setSyncStatus('warn', 'Pulling…');
+        const remote = await fetchRemoteCollection();
+
+        if (!remote.exists) {
+          if (collection.length) {
+            await pushToGitHub({ suppressStatus: true });
+            setSyncStatus('ok', 'GitHub initialized');
+            return true;
+          }
+
+          setSyncStatus('warn', 'Remote file missing');
+          return false;
+        }
+
+        collection = remote.collection.map(item => ({ ...item }));
+        saveCollection({ syncRemote: false });
+        renderGrid();
+        setSyncStatus('ok', 'Synced from GitHub');
+        return true;
+      } catch (error) {
+        console.error(error);
+        setSyncStatus('bad', 'Pull failed');
+        return false;
+      } finally {
+        syncInFlight = false;
+      }
+    }
+
+    async function pushToGitHub(options = {}) {
+      if (!syncConfig.enabled) {
+        if (!options.silent) setSyncStatus('warn', 'Sync off');
+        return false;
+      }
+
+      if (!syncConfig.owner || !syncConfig.repo || !syncConfig.path || !syncConfig.token) {
+        setSyncStatus('bad', 'Sync not configured');
+        return false;
+      }
+
+      if (syncInFlight) return false;
+      syncInFlight = true;
+
+      try {
+        if (!options.suppressStatus) setSyncStatus('warn', 'Pushing…');
+
+        const payload = buildCollectionPayload();
+        const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+
+        const body = {
+          message: `Update fragrance collection ${new Date().toISOString()}`,
+          content: encodedContent,
+          branch: syncConfig.branch || 'main'
+        };
+
+        if (remoteSha) {
+          body.sha = remoteSha;
+        }
+
+        const response = await fetch(getSyncFileUrl().replace(/\?ref=.*$/, ''), {
+          method: 'PUT',
+          headers: getSyncHeaders(),
+          body: JSON.stringify(body)
+        });
+
+        if (!response.ok) {
+          throw new Error(`GitHub push failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        remoteSha = data.content && data.content.sha ? data.content.sha : remoteSha;
+        if (!options.suppressStatus) setSyncStatus('ok', 'Synced to GitHub');
+        return true;
+      } catch (error) {
+        console.error(error);
+        setSyncStatus('bad', 'Push failed');
+        return false;
+      } finally {
+        syncInFlight = false;
+      }
+    }
 
     function loadCollection() {
       const stored = localStorage.getItem('theShelf');
-      collection = stored ? JSON.parse(stored) : DEFAULT_COLLECTION.map(f => ({ ...f }));
-      saveCollection();
+      if (!stored) {
+        collection = DEFAULT_COLLECTION.map(f => ({ ...f }));
+        saveCollection({ syncRemote: false });
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(stored);
+        collection = Array.isArray(parsed) ? parsed : DEFAULT_COLLECTION.map(f => ({ ...f }));
+      } catch (error) {
+        collection = DEFAULT_COLLECTION.map(f => ({ ...f }));
+      }
+
+      saveCollection({ syncRemote: false });
     }
 
-    function saveCollection() {
+    function saveCollection(options = {}) {
+      const { syncRemote = true } = options;
       localStorage.setItem('theShelf', JSON.stringify(collection));
+
+      if (syncRemote && syncConfig.enabled && !syncInFlight) {
+        pushToGitHub({ suppressStatus: false });
+      }
+    }
+
+    function normalizeValue(value) {
+      return String(value || '').toLowerCase().trim();
+    }
+
+    function optionMatchesValue(option, value) {
+      if (!option) return false;
+
+      const normalizedValue = normalizeValue(value);
+      if (!normalizedValue) return false;
+
+      const candidates = [option.value, ...(option.aliases || [])].map(normalizeValue);
+      return candidates.includes(normalizedValue);
+    }
+
+    function renderSelectOptions(selectId, options) {
+      const select = document.getElementById(selectId);
+      select.innerHTML = options.map(option => (
+        `<option value="${escHtml(option.value)}">${escHtml(option.label)}</option>`
+      )).join('');
+    }
+
+    function renderFilterButtons(containerId, options, filterPrefix) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = options.map((option, index) => {
+        const filterValue = `${filterPrefix}:${option.value}`;
+        return `<button class="chip" data-filter="${escHtml(filterValue)}" onclick="setFilter('${filterValue}',this)">${escHtml(option.label)}</button>`;
+      }).join('');
+    }
+
+    function initDynamicControls() {
+      renderFilterButtons('seasonFilters', SEASON_TYPES, 'season');
+      renderFilterButtons('occasionFilters', OCCASION_TYPES, 'occasion');
+      renderSelectOptions('f-season', SEASON_TYPES);
+      renderSelectOptions('f-occasion', OCCASION_TYPES);
+    }
+
+    function resetForm() {
+      ['f-house', 'f-name', 'f-notes', 'f-tags'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('f-type').value = 'designer';
+      document.getElementById('f-family').value = 'Woody / Aromatic';
+      document.getElementById('f-season').value = 'All Year';
+      document.getElementById('f-occasion').value = 'Versatile';
+    }
+
+    function setModalMode(mode) {
+      document.getElementById('formActionSubtitle').textContent = mode === 'edit' ? 'Update fragrance' : 'Collection';
+      document.getElementById('formActionTitle').textContent = mode === 'edit' ? 'Edit Fragrance' : 'Add Fragrance';
+      document.getElementById('formPrimaryAction').textContent = mode === 'edit' ? 'Save Changes' : 'Add to Collection';
+      document.getElementById('formPrimaryAction').dataset.mode = mode;
+    }
+
+    function openSyncModal() {
+      document.getElementById('sync-owner').value = syncConfig.owner || '';
+      document.getElementById('sync-repo').value = syncConfig.repo || '';
+      document.getElementById('sync-branch').value = syncConfig.branch || 'main';
+      document.getElementById('sync-path').value = syncConfig.path || 'data/collection.json';
+      document.getElementById('sync-token').value = syncConfig.token || '';
+      document.getElementById('syncOverlay').classList.add('open');
+    }
+
+    function saveSyncSettings() {
+      syncConfig = {
+        enabled: true,
+        owner: document.getElementById('sync-owner').value.trim(),
+        repo: document.getElementById('sync-repo').value.trim(),
+        branch: document.getElementById('sync-branch').value.trim() || 'main',
+        path: document.getElementById('sync-path').value.trim() || 'data/collection.json',
+        token: document.getElementById('sync-token').value.trim()
+      };
+
+      if (!syncConfig.owner || !syncConfig.repo || !syncConfig.token) {
+        alert('Owner, repo, and token are required for GitHub sync.');
+        return;
+      }
+
+      saveSyncConfig();
+      document.getElementById('syncOverlay').classList.remove('open');
+      setSyncStatus('warn', 'Sync ready');
+    }
+
+    function populateForm(f) {
+      document.getElementById('f-house').value = f.house || '';
+      document.getElementById('f-name').value = f.name || '';
+      document.getElementById('f-type').value = f.type || 'designer';
+      document.getElementById('f-family').value = f.family || 'Woody / Aromatic';
+      document.getElementById('f-season').value = f.season || 'All Year';
+      document.getElementById('f-occasion').value = f.occasion || 'Versatile';
+      document.getElementById('f-notes').value = f.notes || '';
+      document.getElementById('f-tags').value = (f.tags || []).join(', ');
+    }
+
+    function readFormData() {
+      return {
+        house: document.getElementById('f-house').value.trim(),
+        name: document.getElementById('f-name').value.trim(),
+        type: document.getElementById('f-type').value,
+        family: document.getElementById('f-family').value,
+        season: document.getElementById('f-season').value,
+        occasion: document.getElementById('f-occasion').value,
+        notes: document.getElementById('f-notes').value.trim(),
+        tags: document.getElementById('f-tags').value.split(',').map(t => t.trim().toLowerCase()).filter(Boolean)
+      };
     }
 
     // ── FILTER ───────────────────────────────────────────────────────────────
@@ -1525,13 +2036,18 @@
       const empty = document.getElementById('empty');
 
       let filtered = collection.filter(f => {
+        const seasonFilter = activeFilter.startsWith('season:')
+          ? SEASON_TYPES.find(option => `season:${option.value}` === activeFilter)
+          : null;
+        const occasionFilter = activeFilter.startsWith('occasion:')
+          ? OCCASION_TYPES.find(option => `occasion:${option.value}` === activeFilter)
+          : null;
+
         const matchFilter =
           activeFilter === 'all' ||
           activeFilter === f.type ||
-          (activeFilter === 'summer' && (f.tags || []).some(t => ['summer', 'holiday', 'spring'].includes(t))) ||
-          (activeFilter === 'winter' && (f.tags || []).some(t => ['winter', 'autumn'].includes(t))) ||
-          (activeFilter === 'date' && (f.tags || []).some(t => ['date', 'evening'].includes(t))) ||
-          (activeFilter === 'office' && (f.tags || []).some(t => ['office'].includes(t)));
+          optionMatchesValue(seasonFilter, f.season) ||
+          optionMatchesValue(occasionFilter, f.occasion);
         const matchSearch =
           !query ||
           f.name.toLowerCase().includes(query) ||
@@ -1574,6 +2090,7 @@
       <div class="card-name">${escHtml(f.name)}</div>
       <div class="card-tags">${tagHtml}</div>
       <div class="card-notes">${escHtml(f.notes || '')}</div>
+      <button class="btn-edit" onclick="openEditModal('${f.id}'); event.stopPropagation();" title="Edit">✎</button>
       <button class="btn-delete" onclick="deleteFragrance(event,'${f.id}')" title="Remove">✕</button>
     </div>`;
     }
@@ -1679,32 +2196,94 @@
 
     // ── ADD FRAGRANCE ────────────────────────────────────────────────────────
     function openAddModal() {
-      ['f-house', 'f-name', 'f-notes', 'f-tags'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
+      editingId = null;
+      resetForm();
+      setModalMode('add');
+      document.getElementById('addOverlay').classList.add('open');
+    }
+
+    function openEditModal(id) {
+      const fragrance = collection.find(item => item.id === id);
+      if (!fragrance) return;
+
+      editingId = id;
+      resetForm();
+      populateForm(fragrance);
+      setModalMode('edit');
       document.getElementById('addOverlay').classList.add('open');
     }
 
     function addFragrance() {
-      const house = document.getElementById('f-house').value.trim();
-      const name = document.getElementById('f-name').value.trim();
-      const type = document.getElementById('f-type').value;
-      const family = document.getElementById('f-family').value;
-      const season = document.getElementById('f-season').value;
-      const occasion = document.getElementById('f-occasion').value;
-      const notes = document.getElementById('f-notes').value.trim();
-      const tags = document.getElementById('f-tags').value.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
+      const data = readFormData();
 
-      if (!house || !name) {
+      if (!data.house || !data.name) {
         alert('House and Fragrance Name are required.');
         return;
       }
 
-      const id = 'user-' + Date.now();
-      collection.push({ id, house, name, type, family, season, occasion, notes, tags });
+      if (editingId) {
+        collection = collection.map(item => item.id === editingId ? { ...item, ...data } : item);
+      } else {
+        const id = 'user-' + Date.now();
+        collection.push({ id, ...data });
+      }
+
       saveCollection();
+      editingId = null;
       closeModal('addOverlay');
       renderGrid();
+    }
+
+    function exportCollectionJson() {
+      const blob = new Blob([JSON.stringify(buildCollectionPayload(), null, 2)], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'the-shelf-collection.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function triggerImportCollection() {
+      document.getElementById('importCollectionInput').click();
+    }
+
+    function importCollectionFromFile(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(String(reader.result || ''));
+          const normalized = normalizeCollectionPayload(parsed);
+
+          if (!normalized.collection.length) {
+            alert('Invalid backup file. Expected a collection array or payload with a collection field.');
+            return;
+          }
+
+          collection = normalized.collection.filter(item => item && item.id && item.house && item.name);
+          saveCollection({ syncRemote: false });
+          renderGrid();
+        } catch (error) {
+          alert('Could not read that backup file.');
+        } finally {
+          event.target.value = '';
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    async function initializeGitHubSync() {
+      if (!syncConfig.enabled) {
+        setSyncStatus('warn', 'Sync off');
+        return;
+      }
+
+      await pullFromGitHub({ silent: true });
     }
 
     // ── DELETE ───────────────────────────────────────────────────────────────
@@ -2061,8 +2640,11 @@
     }
 
     // ── INIT ─────────────────────────────────────────────────────────────────
+    initDynamicControls();
+    loadSyncConfig();
     loadCollection();
     renderGrid();
+    initializeGitHubSync();
   </script>
 </body>
 
