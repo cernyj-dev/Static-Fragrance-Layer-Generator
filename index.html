@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Shelf — Fragrance Collection</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink:        #1a1612;
-      --smoke:      #2e2820;
-      --amber:      #c8813a;
-      --amber-dim:  #8a5520;
-      --gold:       #d4a94a;
-      --parchment:  #f5f0e8;
-      --vellum:     #ede7d9;
-      --mist:       #a09585;
-      --glass:      rgba(255,255,255,0.06);
-      --border:     rgba(200,129,58,0.18);
-
-      --ff-display: 'Cormorant Garamond', Georgia, serif;
-      --ff-body:    'DM Sans', system-ui, sans-serif;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --ink: #1a1612;
+      --smoke: #2e2820;
+      --amber: #c8813a;
+      --amber-dim: #8a5520;
+      --gold: #d4a94a;
+      --parchment: #f5f0e8;
+      --vellum: #ede7d9;
+      --mist: #a09585;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border: rgba(200, 129, 58, 0.18);
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--ink);
@@ -87,8 +98,14 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    #search::placeholder { color: var(--mist); }
-    #search:focus { border-color: var(--amber); }
+
+    #search::placeholder {
+      color: var(--mist);
+    }
+
+    #search:focus {
+      border-color: var(--amber);
+    }
 
     .btn-add {
       background: var(--amber);
@@ -105,7 +122,10 @@
       transition: background 0.2s;
       white-space: nowrap;
     }
-    .btn-add:hover { background: var(--gold); }
+
+    .btn-add:hover {
+      background: var(--gold);
+    }
 
     .btn-export {
       background: transparent;
@@ -122,6 +142,7 @@
       transition: all 0.2s;
       white-space: nowrap;
     }
+
     .btn-export:hover {
       border-color: var(--amber);
       color: var(--amber);
@@ -159,7 +180,9 @@
       padding: 4px 12px;
       transition: all 0.18s;
     }
-    .chip:hover, .chip.active {
+
+    .chip:hover,
+    .chip.active {
       background: var(--amber);
       border-color: var(--amber);
       color: var(--ink);
@@ -173,11 +196,13 @@
       display: flex;
       gap: 32px;
     }
+
     .stat {
       display: flex;
       align-items: baseline;
       gap: 6px;
     }
+
     .stat-num {
       font-family: var(--ff-display);
       font-size: 1.5rem;
@@ -185,6 +210,7 @@
       color: var(--amber);
       line-height: 1;
     }
+
     .stat-label {
       font-size: 10px;
       letter-spacing: 0.15em;
@@ -217,7 +243,8 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 3px;
       height: 100%;
       background: var(--amber);
@@ -230,7 +257,10 @@
       background: #332d24;
       border-color: var(--border);
     }
-    .card:hover::before { transform: scaleY(1); }
+
+    .card:hover::before {
+      transform: scaleY(1);
+    }
 
     .card-house {
       font-size: 10px;
@@ -266,9 +296,23 @@
       text-transform: uppercase;
     }
 
-    .tag-family  { background: rgba(200,129,58,0.15); color: var(--amber); border: 1px solid rgba(200,129,58,0.3); }
-    .tag-season  { background: rgba(164,150,125,0.12); color: var(--mist); border: 1px solid rgba(164,150,125,0.25); }
-    .tag-occasion{ background: rgba(212,169,74,0.1); color: var(--gold); border: 1px solid rgba(212,169,74,0.2); }
+    .tag-family {
+      background: rgba(200, 129, 58, 0.15);
+      color: var(--amber);
+      border: 1px solid rgba(200, 129, 58, 0.3);
+    }
+
+    .tag-season {
+      background: rgba(164, 150, 125, 0.12);
+      color: var(--mist);
+      border: 1px solid rgba(164, 150, 125, 0.25);
+    }
+
+    .tag-occasion {
+      background: rgba(212, 169, 74, 0.1);
+      color: var(--gold);
+      border: 1px solid rgba(212, 169, 74, 0.2);
+    }
 
     .card-notes {
       font-size: 11px;
@@ -289,24 +333,39 @@
       padding: 2px 7px;
       border-radius: 2px;
     }
-    .badge-designer { background: var(--gold); }
-    .badge-niche    { background: var(--amber); }
-    .badge-clone    { background: var(--mist); }
-    .badge-middle-eastern { background: #b07d4a; }
+
+    .badge-designer {
+      background: var(--gold);
+    }
+
+    .badge-niche {
+      background: var(--amber);
+    }
+
+    .badge-clone {
+      background: var(--mist);
+    }
+
+    .badge-middle-eastern {
+      background: #b07d4a;
+    }
 
     /* ── MODAL ── */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15,11,8,0.88);
+      background: rgba(15, 11, 8, 0.88);
       z-index: 200;
       align-items: center;
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(4px);
     }
-    .modal-overlay.open { display: flex; }
+
+    .modal-overlay.open {
+      display: flex;
+    }
 
     .modal {
       background: var(--smoke);
@@ -357,7 +416,10 @@
       padding: 4px 8px;
       transition: color 0.2s;
     }
-    .modal-close:hover { color: var(--parchment); }
+
+    .modal-close:hover {
+      color: var(--parchment);
+    }
 
     .modal-body {
       padding: 24px 32px 32px;
@@ -374,7 +436,10 @@
       padding-bottom: 6px;
       border-bottom: 1px solid var(--border);
     }
-    .modal-section-title:first-child { margin-top: 0; }
+
+    .modal-section-title:first-child {
+      margin-top: 0;
+    }
 
     .detail-grid {
       display: grid;
@@ -383,7 +448,12 @@
       margin-bottom: 4px;
     }
 
-    .detail-row { display: flex; flex-direction: column; gap: 2px; }
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
     .detail-key {
       font-size: 9px;
       font-weight: 500;
@@ -391,6 +461,7 @@
       text-transform: uppercase;
       color: var(--mist);
     }
+
     .detail-val {
       font-size: 13px;
       color: var(--parchment);
@@ -410,9 +481,10 @@
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
     }
+
     .pairing-item:hover {
       border-color: var(--amber);
-      background: rgba(200,129,58,0.07);
+      background: rgba(200, 129, 58, 0.07);
     }
 
     .pairing-item-name {
@@ -421,11 +493,13 @@
       color: var(--parchment);
       margin-bottom: 2px;
     }
+
     .pairing-item-why {
       font-size: 11px;
       color: var(--mist);
       font-style: italic;
     }
+
     .pairing-not-owned {
       font-size: 9px;
       letter-spacing: 0.1em;
@@ -452,7 +526,10 @@
       flex-direction: column;
       gap: 5px;
     }
-    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
 
     .form-group label {
       font-size: 9px;
@@ -476,11 +553,21 @@
       transition: border-color 0.2s;
       width: 100%;
     }
+
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--amber); }
-    .form-group select option { background: var(--smoke); }
-    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-group textarea:focus {
+      border-color: var(--amber);
+    }
+
+    .form-group select option {
+      background: var(--smoke);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
 
     .form-actions {
       display: flex;
@@ -505,12 +592,17 @@
       padding: 9px 18px;
       transition: all 0.2s;
     }
-    .btn-cancel:hover { border-color: var(--mist); color: var(--parchment); }
+
+    .btn-cancel:hover {
+      border-color: var(--mist);
+      color: var(--parchment);
+    }
 
     .empty-state {
       padding: 80px 40px;
       text-align: center;
     }
+
     .empty-state p {
       font-family: var(--ff-display);
       font-size: 1.5rem;
@@ -532,8 +624,14 @@
       padding: 4px;
       transition: color 0.2s;
     }
-    .card:hover .btn-delete { color: rgba(200,129,58,0.4); }
-    .btn-delete:hover { color: #c0392b !important; }
+
+    .card:hover .btn-delete {
+      color: rgba(200, 129, 58, 0.4);
+    }
+
+    .btn-delete:hover {
+      color: #c0392b !important;
+    }
 
     /* ── SPRAY MAP ── */
     .spray-layout {
@@ -570,13 +668,20 @@
     }
 
     .spray-dot.inactive {
-      background: rgba(160,149,133,0.2) !important;
-      border-color: rgba(160,149,133,0.3) !important;
+      background: rgba(160, 149, 133, 0.2) !important;
+      border-color: rgba(160, 149, 133, 0.3) !important;
     }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(200,129,58,0.5); }
-      50%       { box-shadow: 0 0 0 6px rgba(200,129,58,0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(200, 129, 58, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(200, 129, 58, 0);
+      }
     }
 
     .spray-legend {
@@ -596,7 +701,7 @@
     }
 
     .spray-zone.active {
-      background: rgba(200,129,58,0.07);
+      background: rgba(200, 129, 58, 0.07);
       border-color: var(--border);
     }
 
@@ -639,8 +744,8 @@
     .spray-note {
       margin-top: 14px;
       padding: 10px 12px;
-      background: rgba(212,169,74,0.07);
-      border: 1px solid rgba(212,169,74,0.2);
+      background: rgba(212, 169, 74, 0.07);
+      border: 1px solid rgba(212, 169, 74, 0.2);
       border-radius: 3px;
       font-size: 11px;
       color: var(--gold);
@@ -652,12 +757,35 @@
 
     /* Tablet */
     @media (max-width: 768px) {
-      header { padding: 16px 20px; }
-      .filters, .stats, .grid-wrap { padding-left: 20px; padding-right: 20px; }
-      .modal { max-width: 100%; border-radius: 0; }
-      .modal-overlay { padding: 0; align-items: flex-end; }
-      .modal { max-height: 92vh; border-radius: 12px 12px 0 0; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      header {
+        padding: 16px 20px;
+      }
+
+      .filters,
+      .stats,
+      .grid-wrap {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .modal {
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .modal {
+        max-height: 92vh;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
     }
 
     /* Mobile */
@@ -671,7 +799,9 @@
         gap: 10px;
       }
 
-      .brand h1 { font-size: 1.6rem; }
+      .brand h1 {
+        font-size: 1.6rem;
+      }
 
       .header-actions {
         display: grid;
@@ -682,14 +812,18 @@
 
       #search {
         width: 100%;
-        font-size: 16px; /* Prevent iOS zoom on focus */
+        font-size: 16px;
+        /* Prevent iOS zoom on focus */
       }
 
       .btn-export {
         padding: 9px 10px;
         font-size: 11px;
       }
-      .btn-export::before { content: '↓ '; }
+
+      .btn-export::before {
+        content: '↓ ';
+      }
 
       .btn-add {
         padding: 9px 10px;
@@ -697,10 +831,27 @@
         font-weight: 300;
         letter-spacing: 0;
       }
-      .btn-add::after { content: ''; }
+
+      .btn-add::after {
+        content: '';
+      }
+
       /* Show + icon only on mobile */
-      .btn-add { font-size: 0; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
-      .btn-add::after { content: '+'; font-size: 22px; font-weight: 300; line-height: 1; }
+      .btn-add {
+        font-size: 0;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-add::after {
+        content: '+';
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1;
+      }
 
       /* Filters — horizontal scroll, no wrap */
       .filters {
@@ -711,31 +862,59 @@
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
-      .filters::-webkit-scrollbar { display: none; }
-      .filter-label { display: none; }
-      .chip { white-space: nowrap; flex-shrink: 0; }
+
+      .filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-label {
+        display: none;
+      }
+
+      .chip {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
 
       /* Stats — compact */
       .stats {
         padding: 10px 16px;
         gap: 16px;
       }
-      .stat-num { font-size: 1.2rem; }
-      .stat-label { font-size: 9px; }
+
+      .stat-num {
+        font-size: 1.2rem;
+      }
+
+      .stat-label {
+        font-size: 9px;
+      }
 
       /* Grid — single column on mobile */
-      .grid-wrap { padding: 16px; }
-      .grid { grid-template-columns: 1fr; gap: 2px; }
+      .grid-wrap {
+        padding: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
 
       /* Card — tighter */
-      .card { padding: 16px 16px 14px; }
-      .card-name { font-size: 1.1rem; }
+      .card {
+        padding: 16px 16px 14px;
+      }
+
+      .card-name {
+        font-size: 1.1rem;
+      }
 
       /* Modal — full-screen bottom sheet */
       .modal-overlay {
         padding: 0;
         align-items: flex-end;
       }
+
       .modal {
         max-width: 100%;
         width: 100%;
@@ -751,6 +930,7 @@
         /* Drag handle visual */
         padding-top: 28px;
       }
+
       .modal-header::before {
         content: '';
         position: absolute;
@@ -759,44 +939,62 @@
         transform: translateX(-50%);
         width: 36px;
         height: 4px;
-        background: rgba(200,129,58,0.3);
+        background: rgba(200, 129, 58, 0.3);
         border-radius: 2px;
       }
-      .modal-name { font-size: 1.7rem; }
+
+      .modal-name {
+        font-size: 1.7rem;
+      }
+
       .modal-close {
         top: 16px;
         right: 16px;
       }
 
-      .modal-body { padding: 16px 20px 40px; }
+      .modal-body {
+        padding: 16px 20px 40px;
+      }
 
       /* Detail grid — single col */
-      .detail-grid { grid-template-columns: 1fr 1fr; gap: 10px 12px; }
+      .detail-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 12px;
+      }
 
       /* Spray map — stacked, figure on top centred */
       .spray-layout {
         grid-template-columns: 1fr;
         gap: 16px;
       }
+
       .spray-figure {
         width: 120px;
         margin: 0 auto;
       }
 
       /* Form — single col */
-      .form-grid { grid-template-columns: 1fr; gap: 12px; }
-      .form-group.full { grid-column: 1; }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .form-group.full {
+        grid-column: 1;
+      }
 
       .form-group input,
       .form-group select,
       .form-group textarea {
-        font-size: 16px; /* Prevent iOS zoom */
+        font-size: 16px;
+        /* Prevent iOS zoom */
       }
 
       .form-actions {
         flex-direction: column-reverse;
         gap: 8px;
       }
+
       .form-actions .btn-add,
       .form-actions .btn-cancel {
         width: 100%;
@@ -805,18 +1003,27 @@
       }
 
       /* Pairing items — full width tap targets */
-      .pairing-item { padding: 12px; }
+      .pairing-item {
+        padding: 12px;
+      }
 
       /* Spray zones — slightly more compact */
-      .spray-zone { padding: 8px 10px; gap: 10px; }
-      .spray-zone-tip { font-size: 10px; }
+      .spray-zone {
+        padding: 8px 10px;
+        gap: 10px;
+      }
+
+      .spray-zone-tip {
+        font-size: 10px;
+      }
     }
 
     /* Touch devices — always show delete, remove hover-only states */
     @media (hover: none) {
       .btn-delete {
-        color: rgba(200,129,58,0.25);
+        color: rgba(200, 129, 58, 0.25);
       }
+
       .card:active {
         background: #332d24;
       }
@@ -824,650 +1031,874 @@
 
     /* Very small phones */
     @media (max-width: 380px) {
-      .detail-grid { grid-template-columns: 1fr; }
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="brand">
-    <h1>The Shelf</h1>
-    <span>Fragrance Collection</span>
-  </div>
-  <div class="header-actions">
-    <input type="text" id="search" placeholder="Search fragrances…" oninput="renderGrid()" />
-    <button class="btn-export" onclick="exportForFriend()">↓ Share</button>
-    <button class="btn-add" onclick="openAddModal()">+ Add Fragrance</button>
-  </div>
-</header>
-
-<div class="filters">
-  <span class="filter-label">Filter</span>
-  <button class="chip active" data-filter="all" onclick="setFilter('all',this)">All</button>
-  <button class="chip" data-filter="designer" onclick="setFilter('designer',this)">Designer</button>
-  <button class="chip" data-filter="middle-eastern" onclick="setFilter('middle-eastern',this)">Middle Eastern</button>
-  <button class="chip" data-filter="clone" onclick="setFilter('clone',this)">Clones</button>
-  <button class="chip" data-filter="niche" onclick="setFilter('niche',this)">Niche</button>
-  <button class="chip" data-filter="summer" onclick="setFilter('summer',this)">Summer</button>
-  <button class="chip" data-filter="winter" onclick="setFilter('winter',this)">Winter</button>
-  <button class="chip" data-filter="date" onclick="setFilter('date',this)">Date Night</button>
-  <button class="chip" data-filter="office" onclick="setFilter('office',this)">Office</button>
-</div>
-
-<div class="stats">
-  <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">Fragrances</span></div>
-  <div class="stat"><span class="stat-num" id="stat-houses">0</span><span class="stat-label">Houses</span></div>
-  <div class="stat"><span class="stat-num" id="stat-designer">0</span><span class="stat-label">Designer</span></div>
-  <div class="stat"><span class="stat-num" id="stat-clone">0</span><span class="stat-label">Clones</span></div>
-</div>
-
-<div class="grid-wrap">
-  <div class="grid" id="grid"></div>
-  <div class="empty-state" id="empty" style="display:none">
-    <p>No fragrances found.</p>
-  </div>
-</div>
-
-<!-- DETAIL MODAL -->
-<div class="modal-overlay" id="detailOverlay" onclick="handleOverlayClick(event,'detailOverlay')">
-  <div class="modal" id="detailModal">
-    <div class="modal-header">
-      <div class="modal-house" id="d-house"></div>
-      <div class="modal-name" id="d-name"></div>
-      <button class="modal-close" onclick="closeModal('detailOverlay')">✕</button>
+  <header>
+    <div class="brand">
+      <h1>The Shelf</h1>
+      <span>Fragrance Collection</span>
     </div>
-    <div class="modal-body">
-      <div class="modal-section-title">Details</div>
-      <div class="detail-grid">
-        <div class="detail-row"><span class="detail-key">Family</span><span class="detail-val" id="d-family"></span></div>
-        <div class="detail-row"><span class="detail-key">Type</span><span class="detail-val" id="d-type"></span></div>
-        <div class="detail-row"><span class="detail-key">Season</span><span class="detail-val" id="d-season"></span></div>
-        <div class="detail-row"><span class="detail-key">Occasion</span><span class="detail-val" id="d-occasion"></span></div>
-      </div>
+    <div class="header-actions">
+      <input type="text" id="search" placeholder="Search fragrances…" oninput="renderGrid()" />
+      <button class="btn-export" onclick="exportForFriend()">↓ Share</button>
+      <button class="btn-add" onclick="openAddModal()">+ Add Fragrance</button>
+    </div>
+  </header>
 
-      <div class="modal-section-title" style="margin-top:18px">Notes</div>
-      <p id="d-notes" style="font-size:13px;color:var(--mist);font-style:italic;"></p>
+  <div class="filters">
+    <span class="filter-label">Filter</span>
+    <button class="chip active" data-filter="all" onclick="setFilter('all',this)">All</button>
+    <button class="chip" data-filter="designer" onclick="setFilter('designer',this)">Designer</button>
+    <button class="chip" data-filter="middle-eastern" onclick="setFilter('middle-eastern',this)">Middle Eastern</button>
+    <button class="chip" data-filter="clone" onclick="setFilter('clone',this)">Clones</button>
+    <button class="chip" data-filter="niche" onclick="setFilter('niche',this)">Niche</button>
+    <button class="chip" data-filter="summer" onclick="setFilter('summer',this)">Summer</button>
+    <button class="chip" data-filter="winter" onclick="setFilter('winter',this)">Winter</button>
+    <button class="chip" data-filter="date" onclick="setFilter('date',this)">Date Night</button>
+    <button class="chip" data-filter="office" onclick="setFilter('office',this)">Office</button>
+  </div>
 
-      <div class="modal-section-title" style="margin-top:18px">Tags</div>
-      <div class="tags-row" id="d-tags"></div>
+  <div class="stats">
+    <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">Fragrances</span></div>
+    <div class="stat"><span class="stat-num" id="stat-houses">0</span><span class="stat-label">Houses</span></div>
+    <div class="stat"><span class="stat-num" id="stat-designer">0</span><span class="stat-label">Designer</span></div>
+    <div class="stat"><span class="stat-num" id="stat-clone">0</span><span class="stat-label">Clones</span></div>
+  </div>
 
-      <div class="modal-section-title" style="margin-top:22px">Spray Map</div>
-      <div class="spray-layout">
-        <div class="spray-figure" id="d-spray-figure">
-          <!-- SVG body silhouette + hotspot dots injected by JS -->
-        </div>
-        <div class="spray-legend" id="d-spray-legend"></div>
-      </div>
-      <div class="spray-note" id="d-spray-note"></div>
-
-      <div class="modal-section-title" style="margin-top:22px">Pairs & Layers Well With</div>
-      <div class="pairing-list" id="d-pairings"></div>
+  <div class="grid-wrap">
+    <div class="grid" id="grid"></div>
+    <div class="empty-state" id="empty" style="display:none">
+      <p>No fragrances found.</p>
     </div>
   </div>
-</div>
 
-<!-- ADD MODAL -->
-<div class="modal-overlay" id="addOverlay" onclick="handleOverlayClick(event,'addOverlay')">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-house">Collection</div>
-      <div class="modal-name">Add Fragrance</div>
-      <button class="modal-close" onclick="closeModal('addOverlay')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-group">
-          <label>House / Brand *</label>
-          <input type="text" id="f-house" placeholder="e.g. Tom Ford" />
-        </div>
-        <div class="form-group">
-          <label>Fragrance Name *</label>
-          <input type="text" id="f-name" placeholder="e.g. Oud Wood" />
-        </div>
-        <div class="form-group">
-          <label>Type</label>
-          <select id="f-type">
-            <option value="designer">Designer</option>
-            <option value="middle-eastern">Middle Eastern</option>
-            <option value="clone">Clone</option>
-            <option value="niche">Niche</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Fragrance Family</label>
-          <select id="f-family">
-            <option value="Woody / Aromatic">Woody / Aromatic</option>
-            <option value="Oriental / Oud">Oriental / Oud</option>
-            <option value="Fresh / Citrus">Fresh / Citrus</option>
-            <option value="Spicy / Sensual">Spicy / Sensual</option>
-            <option value="Aquatic / Marine">Aquatic / Marine</option>
-            <option value="Amber / Floral">Amber / Floral</option>
-            <option value="Fougère / Classic">Fougère / Classic</option>
-            <option value="Sweet / Gourmand">Sweet / Gourmand</option>
-            <option value="Leather">Leather</option>
-            <option value="Smoke / Incense">Smoke / Incense</option>
-            <option value="Green / Herbal">Green / Herbal</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Season</label>
-          <select id="f-season">
-            <option value="All Year">All Year</option>
-            <option value="Spring / Summer">Spring / Summer</option>
-            <option value="Autumn / Winter">Autumn / Winter</option>
-            <option value="Summer">Summer</option>
-            <option value="Winter">Winter</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Occasion</label>
-          <select id="f-occasion">
-            <option value="Versatile">Versatile</option>
-            <option value="Office">Office</option>
-            <option value="Date Night">Date Night</option>
-            <option value="Casual">Casual</option>
-            <option value="Formal / Evening">Formal / Evening</option>
-            <option value="Sport / Active">Sport / Active</option>
-            <option value="Summer / Holiday">Summer / Holiday</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label>Key Notes (comma separated)</label>
-          <input type="text" id="f-notes" placeholder="e.g. oud, sandalwood, vanilla, amber" />
-        </div>
-        <div class="form-group full">
-          <label>Tags (comma separated — e.g. summer, date, office)</label>
-          <input type="text" id="f-tags" placeholder="e.g. summer, office, compliment-getter" />
-        </div>
+  <!-- DETAIL MODAL -->
+  <div class="modal-overlay" id="detailOverlay" onclick="handleOverlayClick(event,'detailOverlay')">
+    <div class="modal" id="detailModal">
+      <div class="modal-header">
+        <div class="modal-house" id="d-house"></div>
+        <div class="modal-name" id="d-name"></div>
+        <button class="modal-close" onclick="closeModal('detailOverlay')">✕</button>
       </div>
-      <div class="form-actions">
-        <button class="btn-cancel" onclick="closeModal('addOverlay')">Cancel</button>
-        <button class="btn-add" onclick="addFragrance()">Add to Collection</button>
+      <div class="modal-body">
+        <div class="modal-section-title">Details</div>
+        <div class="detail-grid">
+          <div class="detail-row"><span class="detail-key">Family</span><span class="detail-val" id="d-family"></span>
+          </div>
+          <div class="detail-row"><span class="detail-key">Type</span><span class="detail-val" id="d-type"></span></div>
+          <div class="detail-row"><span class="detail-key">Season</span><span class="detail-val" id="d-season"></span>
+          </div>
+          <div class="detail-row"><span class="detail-key">Occasion</span><span class="detail-val"
+              id="d-occasion"></span></div>
+        </div>
+
+        <div class="modal-section-title" style="margin-top:18px">Notes</div>
+        <p id="d-notes" style="font-size:13px;color:var(--mist);font-style:italic;"></p>
+
+        <div class="modal-section-title" style="margin-top:18px">Tags</div>
+        <div class="tags-row" id="d-tags"></div>
+
+        <div class="modal-section-title" style="margin-top:22px">Spray Map</div>
+        <div class="spray-layout">
+          <div class="spray-figure" id="d-spray-figure">
+            <!-- SVG body silhouette + hotspot dots injected by JS -->
+          </div>
+          <div class="spray-legend" id="d-spray-legend"></div>
+        </div>
+        <div class="spray-note" id="d-spray-note"></div>
+
+        <div class="modal-section-title" style="margin-top:22px">Pairs & Layers Well With</div>
+        <div class="pairing-list" id="d-pairings"></div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-// ── PAIRINGS KNOWLEDGE BASE ──────────────────────────────────────────────
-// Defines which fragrance families / specific scents pair or layer well,
-// and why. Used to generate the pairing panel dynamically.
+  <!-- ADD MODAL -->
+  <div class="modal-overlay" id="addOverlay" onclick="handleOverlayClick(event,'addOverlay')">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-house">Collection</div>
+        <div class="modal-name">Add Fragrance</div>
+        <button class="modal-close" onclick="closeModal('addOverlay')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>House / Brand *</label>
+            <input type="text" id="f-house" placeholder="e.g. Tom Ford" />
+          </div>
+          <div class="form-group">
+            <label>Fragrance Name *</label>
+            <input type="text" id="f-name" placeholder="e.g. Oud Wood" />
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select id="f-type">
+              <option value="designer">Designer</option>
+              <option value="middle-eastern">Middle Eastern</option>
+              <option value="clone">Clone</option>
+              <option value="niche">Niche</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Fragrance Family</label>
+            <select id="f-family">
+              <option value="Woody / Aromatic">Woody / Aromatic</option>
+              <option value="Oriental / Oud">Oriental / Oud</option>
+              <option value="Fresh / Citrus">Fresh / Citrus</option>
+              <option value="Spicy / Sensual">Spicy / Sensual</option>
+              <option value="Aquatic / Marine">Aquatic / Marine</option>
+              <option value="Amber / Floral">Amber / Floral</option>
+              <option value="Fougère / Classic">Fougère / Classic</option>
+              <option value="Sweet / Gourmand">Sweet / Gourmand</option>
+              <option value="Leather">Leather</option>
+              <option value="Smoke / Incense">Smoke / Incense</option>
+              <option value="Green / Herbal">Green / Herbal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Season</label>
+            <select id="f-season">
+              <option value="All Year">All Year</option>
+              <option value="Spring / Summer">Spring / Summer</option>
+              <option value="Autumn / Winter">Autumn / Winter</option>
+              <option value="Summer">Summer</option>
+              <option value="Winter">Winter</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Occasion</label>
+            <select id="f-occasion">
+              <option value="Versatile">Versatile</option>
+              <option value="Office">Office</option>
+              <option value="Date Night">Date Night</option>
+              <option value="Casual">Casual</option>
+              <option value="Formal / Evening">Formal / Evening</option>
+              <option value="Sport / Active">Sport / Active</option>
+              <option value="Summer / Holiday">Summer / Holiday</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Key Notes (comma separated)</label>
+            <input type="text" id="f-notes" placeholder="e.g. oud, sandalwood, vanilla, amber" />
+          </div>
+          <div class="form-group full">
+            <label>Tags (comma separated — e.g. summer, date, office)</label>
+            <input type="text" id="f-tags" placeholder="e.g. summer, office, compliment-getter" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="closeModal('addOverlay')">Cancel</button>
+          <button class="btn-add" onclick="addFragrance()">Add to Collection</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-const PAIRING_RULES = [
-  {
-    families: ['Oriental / Oud', 'Sweet / Gourmand'],
-    reason: 'Sweet, resinous base notes amplify each other — oud lifts vanilla and amber.'
-  },
-  {
-    families: ['Fresh / Citrus', 'Woody / Aromatic'],
-    reason: 'Citrus top notes cut through woody drydowns, adding brightness and longevity.'
-  },
-  {
-    families: ['Aquatic / Marine', 'Fresh / Citrus'],
-    reason: 'Both share marine and bergamot DNA — the combination reads as elevated freshness.'
-  },
-  {
-    families: ['Spicy / Sensual', 'Oriental / Oud'],
-    reason: 'Spice and oud are a classic Middle Eastern pairing — each deepens the other.'
-  },
-  {
-    families: ['Spicy / Sensual', 'Amber / Floral'],
-    reason: 'Amber florals soften spicy edges, creating a warm, seductive trail.'
-  },
-  {
-    families: ['Leather', 'Smoke / Incense'],
-    reason: 'Leather and incense share dry, resinous character — layering creates depth.'
-  },
-  {
-    families: ['Leather', 'Woody / Aromatic'],
-    reason: 'Cedar and sandalwood ground leather accords — a classic masculine combination.'
-  },
-  {
-    families: ['Fougère / Classic', 'Woody / Aromatic'],
-    reason: 'Lavender and oakmoss fougères work naturally with warm, woody bases.'
-  },
-  {
-    families: ['Green / Herbal', 'Aquatic / Marine'],
-    reason: 'Green herbal notes echo the brightness of marine accords.'
-  },
-  {
-    families: ['Sweet / Gourmand', 'Spicy / Sensual'],
-    reason: 'Cinnamon, cardamom and spice bridge sweet gourmands — think spiced rum cake.'
-  },
-  {
-    families: ['Amber / Floral', 'Oriental / Oud'],
-    reason: 'Amber-forward florals bloom on an oud base — the resin ties everything together.'
-  },
-  {
-    families: ['Fresh / Citrus', 'Fougère / Classic'],
-    reason: 'Classic pairing — citrus and lavender share aldehydic freshness.'
-  },
-  {
-    families: ['Smoke / Incense', 'Oriental / Oud'],
-    reason: 'Smoky incense notes are natural companions to dark oud — both demand presence.'
-  },
-  {
-    families: ['Woody / Aromatic', 'Spicy / Sensual'],
-    reason: 'Warm woods balance spicy accords, keeping them from reading as too sharp.'
-  }
-];
+  <script>
+    // ── PAIRINGS KNOWLEDGE BASE ──────────────────────────────────────────────
+    // Defines which fragrance families / specific scents pair or layer well,
+    // and why. Used to generate the pairing panel dynamically.
 
-// ── INITIAL COLLECTION DATA ─────────────────────────────────────────────
-const DEFAULT_COLLECTION = [
-  // ── DESIGNER ORIGINALS
-  { id:'tf-np',   house:'Tom Ford',     name:'Neroli Portofino',    type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'neroli, citrus, sea breeze, amber',   tags:['summer','holiday','fresh','compliment-getter'] },
-  { id:'tf-ow',   house:'Tom Ford',     name:'Oud Wood',            type:'designer',        family:'Woody / Aromatic',    season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn','date'] },
-  { id:'tf-sb',   house:'Tom Ford',     name:'Soleil Blanc',        type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'cardamom, ylang ylang, benzoin, musk', tags:['summer','holiday','resort'] },
-  { id:'bdc',     house:'Chanel',       name:'Bleu de Chanel',      type:'designer',        family:'Woody / Aromatic',    season:'All Year',          occasion:'Office',             notes:'grapefruit, ginger, sandalwood, cedar', tags:['office','versatile','all-year'] },
-  { id:'hbb',     house:'Hugo Boss',    name:'Boss Bottled',        type:'designer',        family:'Fougère / Classic',   season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood, vetiver', tags:['office','classic','versatile'] },
-  { id:'hbbb',    house:'Hugo Boss',    name:'Boss Bottled Beyond', type:'designer',        family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Casual',             notes:'fig, woody notes, amber, musk',       tags:['casual','sweet','autumn'] },
-  { id:'jpg',     house:'Jean Paul Gaultier', name:'Scandal Pour Homme', type:'designer',  family:'Amber / Floral',      season:'Autumn / Winter',   occasion:'Date Night',         notes:'blood orange, leather, tonka bean',   tags:['date','evening','autumn','mini'] },
-  // ── MIDDLE EASTERN / NICHE
-  { id:'mar',     house:'Arabiyat Prestige', name:'Marwa',           type:'middle-eastern', family:'Oriental / Oud',      season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'oud, musk, amber, sandalwood',        tags:['evening','formal','oud'] },
-  { id:'asad',    house:'Lattafa',      name:'Asad Bourbon',        type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'bourbon, vanilla, amber, musk',       tags:['date','evening','sweet','winter'] },
-  { id:'kham',    house:'Lattafa',      name:'Khamrah',             type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'cardamom, oud, vanilla, amber, boozy', tags:['date','winter','gourmand','oud'] },
-  { id:'9pm',     house:'Afnan',        name:'9PM',                 type:'middle-eastern', family:'Spicy / Sensual',     season:'Autumn / Winter',   occasion:'Date Night',         notes:'apple, cinnamon, vetiver, vanilla, amber', tags:['date','evening','compliment-getter'] },
-  { id:'absg',    house:'Auto Biography', name:'Supreme Gold',      type:'middle-eastern', family:'Leather',             season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'leather, spice, amber, oud',          tags:['date','formal','evening','leather'] },
-  { id:'neriv',   house:'Neroli Riviera', name:'Neroli Riviera',    type:'niche',          family:'Fresh / Citrus',      season:'Spring / Summer',   occasion:'Casual',             notes:'neroli, bergamot, citrus, musk',      tags:['casual','fresh','spring','summer'] },
-  // ── ARMAF
-  { id:'aodm',    house:'Armaf',        name:'Odyssey Mega',        type:'middle-eastern', family:'Aquatic / Marine',    season:'Spring / Summer',   occasion:'Sport / Active',     notes:'bergamot, lavender, marine, cedar',   tags:['sport','fresh','summer','aquatic'] },
-  { id:'aoms',    house:'Armaf',        name:'Odyssey Mandarin Sky', type:'middle-eastern', family:'Fresh / Citrus',    season:'Spring / Summer',   occasion:'Casual',             notes:'mandarin, citrus, musk, light woods', tags:['casual','fresh','summer','sport'] },
-  // ── THE ESSENCE VAULT
-  { id:'tev-git', house:'The Essence Vault', name:'Green Irish Tweed (Clone)', type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'violet leaf, iris, sandalwood, amber', tags:['office','classic','green','elegant'] },
-  { id:'tev-sauv',house:'The Essence Vault', name:'Sauvage Dior (Clone)',      type:'clone', family:'Woody / Aromatic',  season:'All Year',          occasion:'Office',             notes:'bergamot, ambroxan, pepper, woods',   tags:['office','versatile','fresh','woods'] },
-  { id:'tev-boss',house:'The Essence Vault', name:'Boss Bottled (Clone)',      type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood',         tags:['office','classic'] },
-  { id:'tev-eros',house:'The Essence Vault', name:'Eros Versace (Clone)',      type:'clone', family:'Spicy / Sensual',   season:'Spring / Summer',   occasion:'Date Night',         notes:'mint, tonka bean, vanilla, cedar',    tags:['date','summer','fresh','spicy'] },
-  { id:'tev-ouw', house:'The Essence Vault', name:'Oud Wood (Clone)',          type:'clone', family:'Woody / Aromatic',  season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn'] },
-  { id:'tev-br',  house:'The Essence Vault', name:'BR540 Clone (461)',         type:'clone', family:'Amber / Floral',    season:'All Year',          occasion:'Date Night',         notes:'jasmine, saffron, ambergris, cedar',  tags:['date','evening','floral','amber'] },
-  // ── OTHER
-  { id:'jli',     house:'Alhambra',     name:'Jean Lowe Immortal',  type:'middle-eastern', family:'Woody / Aromatic',   season:'All Year',          occasion:'Versatile',          notes:'aquatic, woods, musk, amber',         tags:['versatile','casual'] },
-  { id:'aodmw',   house:'Oud Wood',     name:'Oud Wood (Clone box)',type:'clone',           family:'Woody / Aromatic',   season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, woods',              tags:['woody','office'] },
-  { id:'khalis',  house:'Khalis',       name:'Khalis (mini)',        type:'middle-eastern', family:'Oriental / Oud',     season:'Autumn / Winter',   occasion:'Evening',            notes:'oud, amber, musk',                    tags:['evening','oud','mini'] },
-];
+    const PAIRING_RULES = [
+      {
+        families: ['Oriental / Oud', 'Sweet / Gourmand'],
+        reason: 'Sweet, resinous base notes amplify each other — oud lifts vanilla and amber.'
+      },
+      {
+        families: ['Fresh / Citrus', 'Woody / Aromatic'],
+        reason: 'Citrus top notes cut through woody drydowns, adding brightness and longevity.'
+      },
+      {
+        families: ['Aquatic / Marine', 'Fresh / Citrus'],
+        reason: 'Both share marine and bergamot DNA — the combination reads as elevated freshness.'
+      },
+      {
+        families: ['Spicy / Sensual', 'Oriental / Oud'],
+        reason: 'Spice and oud are a classic Middle Eastern pairing — each deepens the other.'
+      },
+      {
+        families: ['Spicy / Sensual', 'Amber / Floral'],
+        reason: 'Amber florals soften spicy edges, creating a warm, seductive trail.'
+      },
+      {
+        families: ['Leather', 'Smoke / Incense'],
+        reason: 'Leather and incense share dry, resinous character — layering creates depth.'
+      },
+      {
+        families: ['Leather', 'Woody / Aromatic'],
+        reason: 'Cedar and sandalwood ground leather accords — a classic masculine combination.'
+      },
+      {
+        families: ['Fougère / Classic', 'Woody / Aromatic'],
+        reason: 'Lavender and oakmoss fougères work naturally with warm, woody bases.'
+      },
+      {
+        families: ['Green / Herbal', 'Aquatic / Marine'],
+        reason: 'Green herbal notes echo the brightness of marine accords.'
+      },
+      {
+        families: ['Sweet / Gourmand', 'Spicy / Sensual'],
+        reason: 'Cinnamon, cardamom and spice bridge sweet gourmands — think spiced rum cake.'
+      },
+      {
+        families: ['Amber / Floral', 'Oriental / Oud'],
+        reason: 'Amber-forward florals bloom on an oud base — the resin ties everything together.'
+      },
+      {
+        families: ['Fresh / Citrus', 'Fougère / Classic'],
+        reason: 'Classic pairing — citrus and lavender share aldehydic freshness.'
+      },
+      {
+        families: ['Smoke / Incense', 'Oriental / Oud'],
+        reason: 'Smoky incense notes are natural companions to dark oud — both demand presence.'
+      },
+      {
+        families: ['Woody / Aromatic', 'Spicy / Sensual'],
+        reason: 'Warm woods balance spicy accords, keeping them from reading as too sharp.'
+      }
+    ];
 
-// ── STATE ────────────────────────────────────────────────────────────────
-let collection = [];
-let activeFilter = 'all';
-let currentFragrance = null;
+    // ── INITIAL COLLECTION DATA ─────────────────────────────────────────────
+    /*
+    const DEFAULT_COLLECTION = [
+      // ── DESIGNER ORIGINALS
+      { id:'tf-np',   house:'Tom Ford',     name:'Neroli Portofino',    type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'neroli, citrus, sea breeze, amber',   tags:['summer','holiday','fresh','compliment-getter'] },
+      { id:'tf-ow',   house:'Tom Ford',     name:'Oud Wood',            type:'designer',        family:'Woody / Aromatic',    season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn','date'] },
+      { id:'tf-sb',   house:'Tom Ford',     name:'Soleil Blanc',        type:'designer',        family:'Fresh / Citrus',      season:'Summer',            occasion:'Summer / Holiday',   notes:'cardamom, ylang ylang, benzoin, musk', tags:['summer','holiday','resort'] },
+      { id:'bdc',     house:'Chanel',       name:'Bleu de Chanel',      type:'designer',        family:'Woody / Aromatic',    season:'All Year',          occasion:'Office',             notes:'grapefruit, ginger, sandalwood, cedar', tags:['office','versatile','all-year'] },
+      { id:'hbb',     house:'Hugo Boss',    name:'Boss Bottled',        type:'designer',        family:'Fougère / Classic',   season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood, vetiver', tags:['office','classic','versatile'] },
+      { id:'hbbb',    house:'Hugo Boss',    name:'Boss Bottled Beyond', type:'designer',        family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Casual',             notes:'fig, woody notes, amber, musk',       tags:['casual','sweet','autumn'] },
+      { id:'jpg',     house:'Jean Paul Gaultier', name:'Scandal Pour Homme', type:'designer',  family:'Amber / Floral',      season:'Autumn / Winter',   occasion:'Date Night',         notes:'blood orange, leather, tonka bean',   tags:['date','evening','autumn','mini'] },
+      // ── MIDDLE EASTERN / NICHE
+      { id:'mar',     house:'Arabiyat Prestige', name:'Marwa',           type:'middle-eastern', family:'Oriental / Oud',      season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'oud, musk, amber, sandalwood',        tags:['evening','formal','oud'] },
+      { id:'asad',    house:'Lattafa',      name:'Asad Bourbon',        type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'bourbon, vanilla, amber, musk',       tags:['date','evening','sweet','winter'] },
+      { id:'kham',    house:'Lattafa',      name:'Khamrah',             type:'middle-eastern', family:'Sweet / Gourmand',    season:'Autumn / Winter',   occasion:'Date Night',         notes:'cardamom, oud, vanilla, amber, boozy', tags:['date','winter','gourmand','oud'] },
+      { id:'9pm',     house:'Afnan',        name:'9PM',                 type:'middle-eastern', family:'Spicy / Sensual',     season:'Autumn / Winter',   occasion:'Date Night',         notes:'apple, cinnamon, vetiver, vanilla, amber', tags:['date','evening','compliment-getter'] },
+      { id:'absg',    house:'Auto Biography', name:'Supreme Gold',      type:'middle-eastern', family:'Leather',             season:'Autumn / Winter',   occasion:'Formal / Evening',   notes:'leather, spice, amber, oud',          tags:['date','formal','evening','leather'] },
+      { id:'neriv',   house:'Neroli Riviera', name:'Neroli Riviera',    type:'niche',          family:'Fresh / Citrus',      season:'Spring / Summer',   occasion:'Casual',             notes:'neroli, bergamot, citrus, musk',      tags:['casual','fresh','spring','summer'] },
+      // ── ARMAF
+      { id:'aodm',    house:'Armaf',        name:'Odyssey Mega',        type:'middle-eastern', family:'Aquatic / Marine',    season:'Spring / Summer',   occasion:'Sport / Active',     notes:'bergamot, lavender, marine, cedar',   tags:['sport','fresh','summer','aquatic'] },
+      { id:'aoms',    house:'Armaf',        name:'Odyssey Mandarin Sky', type:'middle-eastern', family:'Fresh / Citrus',    season:'Spring / Summer',   occasion:'Casual',             notes:'mandarin, citrus, musk, light woods', tags:['casual','fresh','summer','sport'] },
+      // ── THE ESSENCE VAULT
+      { id:'tev-git', house:'The Essence Vault', name:'Green Irish Tweed (Clone)', type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'violet leaf, iris, sandalwood, amber', tags:['office','classic','green','elegant'] },
+      { id:'tev-sauv',house:'The Essence Vault', name:'Sauvage Dior (Clone)',      type:'clone', family:'Woody / Aromatic',  season:'All Year',          occasion:'Office',             notes:'bergamot, ambroxan, pepper, woods',   tags:['office','versatile','fresh','woods'] },
+      { id:'tev-boss',house:'The Essence Vault', name:'Boss Bottled (Clone)',      type:'clone', family:'Fougère / Classic', season:'All Year',          occasion:'Office',             notes:'apple, cinnamon, sandalwood',         tags:['office','classic'] },
+      { id:'tev-eros',house:'The Essence Vault', name:'Eros Versace (Clone)',      type:'clone', family:'Spicy / Sensual',   season:'Spring / Summer',   occasion:'Date Night',         notes:'mint, tonka bean, vanilla, cedar',    tags:['date','summer','fresh','spicy'] },
+      { id:'tev-ouw', house:'The Essence Vault', name:'Oud Wood (Clone)',          type:'clone', family:'Woody / Aromatic',  season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, rosewood, vanilla',  tags:['office','woody','autumn'] },
+      { id:'tev-br',  house:'The Essence Vault', name:'BR540 Clone (461)',         type:'clone', family:'Amber / Floral',    season:'All Year',          occasion:'Date Night',         notes:'jasmine, saffron, ambergris, cedar',  tags:['date','evening','floral','amber'] },
+      // ── OTHER
+      { id:'jli',     house:'Alhambra',     name:'Jean Lowe Immortal',  type:'middle-eastern', family:'Woody / Aromatic',   season:'All Year',          occasion:'Versatile',          notes:'aquatic, woods, musk, amber',         tags:['versatile','casual'] },
+      { id:'aodmw',   house:'Oud Wood',     name:'Oud Wood (Clone box)',type:'clone',           family:'Woody / Aromatic',   season:'Autumn / Winter',   occasion:'Office',             notes:'oud, sandalwood, woods',              tags:['woody','office'] },
+      { id:'khalis',  house:'Khalis',       name:'Khalis (mini)',        type:'middle-eastern', family:'Oriental / Oud',     season:'Autumn / Winter',   occasion:'Evening',            notes:'oud, amber, musk',                    tags:['evening','oud','mini'] },
+    ];
+    */
 
-function loadCollection() {
-  const stored = localStorage.getItem('theShelf');
-  collection = stored ? JSON.parse(stored) : DEFAULT_COLLECTION.map(f => ({...f}));
-  saveCollection();
-}
+    // ── INITIAL COLLECTION DATA ─────────────────────────────────────────────
+    const DEFAULT_COLLECTION = [
+      {
+        id: 'lat-aon2',
+        house: 'Lattafa',
+        name: 'Art Of Nature II',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'Autumn / Winter',
+        occasion: 'Casual',
+        notes: 'bergamot, cardamom, fruity notes, patchouli, cedarwood, amber, musk',
+        tags: ['fruity', 'warm', 'oriental']
+      },
+      {
+        id: 'arm-king',
+        house: 'Armaf',
+        name: 'King',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'Spring / Summer',
+        occasion: 'Versatile',
+        notes: 'lemon, bergamot, lavender, pepper, leather, cedarwood, patchouli',
+        tags: ['fresh', 'masculine', 'aromatic']
+      },
+      {
+        id: 'her-tdh',
+        house: 'Hermès',
+        name: "Terre d'Hermès",
+        type: 'designer',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Office',
+        notes: 'orange, grapefruit, flint, vetiver, cedar, benzoin, patchouli',
+        tags: ['office', 'earthy', 'classic', 'signature']
+      },
+      {
+        id: 'ray-ita',
+        house: 'Rayhaan',
+        name: 'Italia',
+        type: 'clone',
+        family: 'Fresh / Citrus',
+        season: 'Summer',
+        occasion: 'Casual',
+        notes: 'grapefruit, bergamot, ozonic notes, violet leaf, marine notes, java vetiver, musk',
+        tags: ['summer', 'citrus-bomb', 'fresh']
+      },
+      {
+        id: 'roc-mou',
+        house: 'Rochas',
+        name: 'Moustache Eau de Parfum',
+        type: 'designer',
+        family: 'Spicy / Sensual',
+        season: 'Autumn / Winter',
+        occasion: 'Date Night',
+        notes: 'pink pepper, mandarin orange, atlas cedar, patchouli, vanilla, benzoin',
+        tags: ['date-night', 'elegant', 'sweet', 'warm']
+      },
+      {
+        id: 'ras-hwf',
+        house: 'Rasasi',
+        name: 'Hawas Fire',
+        type: 'middle-eastern',
+        family: 'Spicy / Sensual',
+        season: 'All Year',
+        occasion: 'Date Night',
+        notes: 'apple, bergamot, cinnamon, patchouli, praline, amber, oakmoss, musk',
+        tags: ['beast-mode', 'loud', 'sweet', 'compliment-getter']
+      },
+      {
+        id: 'arm-cdnim-le24',
+        house: 'Armaf',
+        name: 'Club de Nuit Intense Man Limited Edition Parfum 2024',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Versatile',
+        notes: 'pineapple, lemon, lime, blackcurrant, birch, jasmine, patchouli, musk, ambergris',
+        tags: ['signature', 'versatile', 'beast-mode', 'smoky']
+      },
+      {
+        id: 'arm-cdnic',
+        house: 'Armaf',
+        name: 'Club de Nuit Blue Iconic',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Office',
+        notes: 'grapefruit, mint, lemon, pink pepper, ginger, nutmeg, melon, incense, cedar, sandalwood',
+        tags: ['office', 'versatile', 'fresh', 'all-year']
+      },
+      {
+        id: 'afn-lynf',
+        house: 'Afnan',
+        name: 'Lynked Freedom',
+        type: 'middle-eastern',
+        family: 'Fougère / Classic',
+        season: 'Spring / Summer',
+        occasion: 'Casual',
+        notes: 'bergamot, lavender, fresh spices, aromatic notes, cedarwood, white musk, amber',
+        tags: ['clean', 'fresh', 'casual', 'daily']
+      },
+      {
+        id: 'afn-supcoll',
+        house: 'Afnan',
+        name: "Supremacy Collector's Edition Pour Homme",
+        type: 'middle-eastern',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Versatile',
+        notes: 'pineapple, apple, bergamot, blackcurrant, birch, patchouli, jasmine, oakmoss, musk',
+        tags: ['fruity', 'elegant', 'versatile']
+      },
+      {
+        id: 'ajm-evg',
+        house: 'Ajmal',
+        name: 'Evoke Gold For Him',
+        type: 'clone',
+        family: 'Amber / Floral',
+        season: 'All Year',
+        occasion: 'Office',
+        notes: 'neroli, black pepper, iris, amber, geranium, cedarwood, patchouli',
+        tags: ['office', 'soapy', 'clean', 'professional']
+      },
+      {
+        id: 'afn-turb',
+        house: 'Afnan',
+        name: 'Turathi Blue',
+        type: 'clone',
+        family: 'Fresh / Citrus',
+        season: 'Spring / Summer',
+        occasion: 'Versatile',
+        notes: 'grapefruit, citruses, amber, woodsy notes, musk, patchouli',
+        tags: ['summer', 'fresh', 'beast-mode', 'citrus-bomb']
+      },
+      {
+        id: 'lat-asad-elix',
+        house: 'Lattafa',
+        name: 'Asad Elixir',
+        type: 'middle-eastern',
+        family: 'Spicy / Sensual',
+        season: 'Winter',
+        occasion: 'Formal / Evening',
+        notes: 'licorice, black pepper, cloves, lavender, amber, vanilla, patchouli, sandalwood',
+        tags: ['winter', 'dark', 'heavy', 'beast-mode']
+      },
+      {
+        id: 'arm-cdnlh',
+        house: 'Armaf',
+        name: 'Club De Nuit Lionheart Man',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Casual',
+        notes: 'ginger, bergamot, clary sage, spices, leather, cedarwood, musk',
+        tags: ['masculine', 'spicy', 'casual']
+      },
+      {
+        id: 'arm-cdnpr',
+        house: 'Armaf',
+        name: 'Club de Nuit Precieux I',
+        type: 'clone',
+        family: 'Woody / Aromatic',
+        season: 'All Year',
+        occasion: 'Formal / Evening',
+        notes: 'pineapple, pear, bergamot, pink pepper, jasmine, anise, oakmoss, leather, amber, vanilla',
+        tags: ['luxurious', 'evening', 'rich', 'complex']
+      },
+      {
+        id: 'afn-rarec',
+        house: 'Afnan',
+        name: 'Rare Carbon',
+        type: 'clone',
+        family: 'Leather',
+        season: 'Autumn / Winter',
+        occasion: 'Formal / Evening',
+        notes: 'leather, violet leaf, nutmeg, rose, amber, cedarwood, sandalwood',
+        tags: ['leather', 'dark', 'masculine', 'evening']
+      }
+    ];
 
-function saveCollection() {
-  localStorage.setItem('theShelf', JSON.stringify(collection));
-}
+    const SEASON_TYPES = [
+      "Summer", "Winter", "Autumn / Winter", "Spring / Summer", "All Year"
+    ]
 
-// ── FILTER ───────────────────────────────────────────────────────────────
-function setFilter(f, el) {
-  activeFilter = f;
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderGrid();
-}
+    const OCCASION_TYPES = [
+      "Versatile",
+      "Office",
+      "Date Night",
+      "Casual",
+      "Formal / Evening",
+      "Sport / Active",
+      "Summer / Holiday"
+    ]
 
-// ── RENDER GRID ──────────────────────────────────────────────────────────
-function renderGrid() {
-  const query = document.getElementById('search').value.toLowerCase().trim();
-  const grid  = document.getElementById('grid');
-  const empty = document.getElementById('empty');
+    // ── STATE ────────────────────────────────────────────────────────────────
+    let collection = [];
+    let activeFilter = 'all';
+    let currentFragrance = null;
 
-  let filtered = collection.filter(f => {
-    const matchFilter =
-      activeFilter === 'all' ||
-      activeFilter === f.type ||
-      (activeFilter === 'summer'  && (f.tags||[]).some(t => ['summer','holiday','spring'].includes(t))) ||
-      (activeFilter === 'winter'  && (f.tags||[]).some(t => ['winter','autumn'].includes(t))) ||
-      (activeFilter === 'date'    && (f.tags||[]).some(t => ['date','evening'].includes(t))) ||
-      (activeFilter === 'office'  && (f.tags||[]).some(t => ['office'].includes(t)));
-    const matchSearch =
-      !query ||
-      f.name.toLowerCase().includes(query) ||
-      f.house.toLowerCase().includes(query) ||
-      (f.notes||'').toLowerCase().includes(query) ||
-      (f.tags||[]).some(t => t.includes(query));
-    return matchFilter && matchSearch;
-  });
+    function loadCollection() {
+      const stored = localStorage.getItem('theShelf');
+      collection = stored ? JSON.parse(stored) : DEFAULT_COLLECTION.map(f => ({ ...f }));
+      saveCollection();
+    }
 
-  updateStats();
+    function saveCollection() {
+      localStorage.setItem('theShelf', JSON.stringify(collection));
+    }
 
-  if (!filtered.length) {
-    grid.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
+    // ── FILTER ───────────────────────────────────────────────────────────────
+    function setFilter(f, el) {
+      activeFilter = f;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      renderGrid();
+    }
 
-  grid.innerHTML = filtered.map(f => cardHTML(f)).join('');
-}
+    // ── RENDER GRID ──────────────────────────────────────────────────────────
+    function renderGrid() {
+      const query = document.getElementById('search').value.toLowerCase().trim();
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
 
-function cardHTML(f) {
-  const typeBadge = {
-    designer:       ['badge-designer', 'Designer'],
-    'middle-eastern':['badge-middle-eastern', 'M. Eastern'],
-    clone:          ['badge-clone', 'Clone'],
-    niche:          ['badge-niche', 'Niche'],
-  }[f.type] || ['badge-clone', f.type];
+      let filtered = collection.filter(f => {
+        const matchFilter =
+          activeFilter === 'all' ||
+          activeFilter === f.type ||
+          (activeFilter === 'summer' && (f.tags || []).some(t => ['summer', 'holiday', 'spring'].includes(t))) ||
+          (activeFilter === 'winter' && (f.tags || []).some(t => ['winter', 'autumn'].includes(t))) ||
+          (activeFilter === 'date' && (f.tags || []).some(t => ['date', 'evening'].includes(t))) ||
+          (activeFilter === 'office' && (f.tags || []).some(t => ['office'].includes(t)));
+        const matchSearch =
+          !query ||
+          f.name.toLowerCase().includes(query) ||
+          f.house.toLowerCase().includes(query) ||
+          (f.notes || '').toLowerCase().includes(query) ||
+          (f.tags || []).some(t => t.includes(query));
+        return matchFilter && matchSearch;
+      });
 
-  const tagHtml = [
-    f.family   ? `<span class="tag tag-family">${f.family}</span>` : '',
-    f.season   ? `<span class="tag tag-season">${f.season}</span>` : '',
-    f.occasion ? `<span class="tag tag-occasion">${f.occasion}</span>` : '',
-  ].join('');
+      updateStats();
 
-  return `
+      if (!filtered.length) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      grid.innerHTML = filtered.map(f => cardHTML(f)).join('');
+    }
+
+    function cardHTML(f) {
+      const typeBadge = {
+        designer: ['badge-designer', 'Designer'],
+        'middle-eastern': ['badge-middle-eastern', 'M. Eastern'],
+        clone: ['badge-clone', 'Clone'],
+        niche: ['badge-niche', 'Niche'],
+      }[f.type] || ['badge-clone', f.type];
+
+      const tagHtml = [
+        f.family ? `<span class="tag tag-family">${f.family}</span>` : '',
+        f.season ? `<span class="tag tag-season">${f.season}</span>` : '',
+        f.occasion ? `<span class="tag tag-occasion">${f.occasion}</span>` : '',
+      ].join('');
+
+      return `
     <div class="card" onclick="openDetail('${f.id}')">
       <span class="card-type-badge ${typeBadge[0]}">${typeBadge[1]}</span>
       <div class="card-house">${escHtml(f.house)}</div>
       <div class="card-name">${escHtml(f.name)}</div>
       <div class="card-tags">${tagHtml}</div>
-      <div class="card-notes">${escHtml(f.notes||'')}</div>
+      <div class="card-notes">${escHtml(f.notes || '')}</div>
       <button class="btn-delete" onclick="deleteFragrance(event,'${f.id}')" title="Remove">✕</button>
     </div>`;
-}
+    }
 
-// ── STATS ────────────────────────────────────────────────────────────────
-function updateStats() {
-  document.getElementById('stat-total').textContent    = collection.length;
-  document.getElementById('stat-houses').textContent   = new Set(collection.map(f=>f.house)).size;
-  document.getElementById('stat-designer').textContent = collection.filter(f=>f.type==='designer').length;
-  document.getElementById('stat-clone').textContent    = collection.filter(f=>f.type==='clone').length;
-}
+    // ── STATS ────────────────────────────────────────────────────────────────
+    function updateStats() {
+      document.getElementById('stat-total').textContent = collection.length;
+      document.getElementById('stat-houses').textContent = new Set(collection.map(f => f.house)).size;
+      document.getElementById('stat-designer').textContent = collection.filter(f => f.type === 'designer').length;
+      document.getElementById('stat-clone').textContent = collection.filter(f => f.type === 'clone').length;
+    }
 
-// ── DETAIL MODAL ─────────────────────────────────────────────────────────
-function openDetail(id) {
-  const f = collection.find(x => x.id === id);
-  if (!f) return;
-  currentFragrance = f;
+    // ── DETAIL MODAL ─────────────────────────────────────────────────────────
+    function openDetail(id) {
+      const f = collection.find(x => x.id === id);
+      if (!f) return;
+      currentFragrance = f;
 
-  document.getElementById('d-house').textContent    = f.house;
-  document.getElementById('d-name').textContent     = f.name;
-  document.getElementById('d-family').textContent   = f.family   || '—';
-  document.getElementById('d-type').textContent     = capitalise(f.type);
-  document.getElementById('d-season').textContent   = f.season   || '—';
-  document.getElementById('d-occasion').textContent = f.occasion || '—';
-  document.getElementById('d-notes').textContent    = f.notes    || '—';
+      document.getElementById('d-house').textContent = f.house;
+      document.getElementById('d-name').textContent = f.name;
+      document.getElementById('d-family').textContent = f.family || '—';
+      document.getElementById('d-type').textContent = capitalise(f.type);
+      document.getElementById('d-season').textContent = f.season || '—';
+      document.getElementById('d-occasion').textContent = f.occasion || '—';
+      document.getElementById('d-notes').textContent = f.notes || '—';
 
-  // Tags
-  const tagsEl = document.getElementById('d-tags');
-  tagsEl.innerHTML = (f.tags||[]).map(t =>
-    `<span class="tag tag-family">${escHtml(t)}</span>`
-  ).join('');
+      // Tags
+      const tagsEl = document.getElementById('d-tags');
+      tagsEl.innerHTML = (f.tags || []).map(t =>
+        `<span class="tag tag-family">${escHtml(t)}</span>`
+      ).join('');
 
-  // Pairings
-  const pairingsEl = document.getElementById('d-pairings');
-  const pairs = getPairings(f);
-  if (!pairs.length) {
-    pairingsEl.innerHTML = '<p style="color:var(--mist);font-style:italic;font-size:13px">No specific pairing data yet.</p>';
-  } else {
-    pairingsEl.innerHTML = pairs.map(p => `
+      // Pairings
+      const pairingsEl = document.getElementById('d-pairings');
+      const pairs = getPairings(f);
+      if (!pairs.length) {
+        pairingsEl.innerHTML = '<p style="color:var(--mist);font-style:italic;font-size:13px">No specific pairing data yet.</p>';
+      } else {
+        pairingsEl.innerHTML = pairs.map(p => `
       <div class="pairing-item" onclick="openDetail('${p.id}')">
         <div class="pairing-item-name">${escHtml(p.house)} — ${escHtml(p.name)}</div>
         <div class="pairing-item-why">${escHtml(p.reason)}</div>
         ${!p.owned ? '<div class="pairing-not-owned">Not in collection</div>' : ''}
       </div>
     `).join('');
-  }
+      }
 
-  document.getElementById('detailOverlay').classList.add('open');
-  buildSprayMap(f);
-}
+      document.getElementById('detailOverlay').classList.add('open');
+      buildSprayMap(f);
+    }
 
-function getPairings(f) {
-  const results = [];
-  const seen = new Set();
+    function getPairings(f) {
+      const results = [];
+      const seen = new Set();
 
-  // 1. Rule-based: same or compatible families
-  PAIRING_RULES.forEach(rule => {
-    if (rule.families.includes(f.family)) {
-      const otherFamily = rule.families.find(x => x !== f.family) || f.family;
-      collection.forEach(other => {
-        if (other.id === f.id) return;
-        if (seen.has(other.id)) return;
-        if (other.family === otherFamily || other.family === f.family) {
-          seen.add(other.id);
-          results.push({ ...other, reason: rule.reason, owned: true });
+      // 1. Rule-based: same or compatible families
+      PAIRING_RULES.forEach(rule => {
+        if (rule.families.includes(f.family)) {
+          const otherFamily = rule.families.find(x => x !== f.family) || f.family;
+          collection.forEach(other => {
+            if (other.id === f.id) return;
+            if (seen.has(other.id)) return;
+            if (other.family === otherFamily || other.family === f.family) {
+              seen.add(other.id);
+              results.push({ ...other, reason: rule.reason, owned: true });
+            }
+          });
         }
       });
+
+      // 2. Same house — often designed to complement
+      collection.forEach(other => {
+        if (other.id === f.id || seen.has(other.id)) return;
+        if (other.house === f.house) {
+          seen.add(other.id);
+          results.push({ ...other, reason: `Same house — ${other.house} fragrances are designed with a shared aesthetic.`, owned: true });
+        }
+      });
+
+      // 3. Layering tips specific to well-known combos
+      const SPECIFIC = {
+        'tf-np': [{ name: 'Oud Wood', why: 'Neroli over Oud Wood — citrus top on a woody base is a classic TF layering technique.' }],
+        'tf-ow': [{ name: 'Neroli Portofino', why: 'A drop of Neroli lifts the Oud Wood and adds a coastal freshness.' }],
+        'bdc': [{ name: 'Sauvage Dior (Clone)', why: 'Both share ambroxan / woody DNA — layering deepens projection.' }],
+        '9pm': [{ name: 'Khamrah', why: 'Both are dark, spicy and sweet — layering doubles the sillage and complexity.' }],
+        'kham': [{ name: 'Asad Bourbon', why: 'Bourbon and oud-vanilla is a potent, rich combination for cold evenings.' }],
+        'tev-br': [{ name: '9PM', why: 'BR540 amber base over 9PM spice creates an opulent, club-ready blend.' }],
+        'absg': [{ name: 'Asad Bourbon', why: 'Leather and bourbon create a spiced, aged-whisky effect.' }],
+      };
+
+      if (SPECIFIC[f.id]) {
+        SPECIFIC[f.id].forEach(hint => {
+          const match = collection.find(x => x.name === hint.name);
+          if (match && !seen.has(match.id)) {
+            seen.add(match.id);
+            results.push({ ...match, reason: hint.why, owned: true });
+          }
+        });
+      }
+
+      return results.slice(0, 8);
     }
-  });
 
-  // 2. Same house — often designed to complement
-  collection.forEach(other => {
-    if (other.id === f.id || seen.has(other.id)) return;
-    if (other.house === f.house) {
-      seen.add(other.id);
-      results.push({ ...other, reason: `Same house — ${other.house} fragrances are designed with a shared aesthetic.`, owned: true });
+    // ── ADD FRAGRANCE ────────────────────────────────────────────────────────
+    function openAddModal() {
+      ['f-house', 'f-name', 'f-notes', 'f-tags'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('addOverlay').classList.add('open');
     }
-  });
 
-  // 3. Layering tips specific to well-known combos
-  const SPECIFIC = {
-    'tf-np':  [{name:'Oud Wood', why:'Neroli over Oud Wood — citrus top on a woody base is a classic TF layering technique.'}],
-    'tf-ow':  [{name:'Neroli Portofino', why:'A drop of Neroli lifts the Oud Wood and adds a coastal freshness.'}],
-    'bdc':    [{name:'Sauvage Dior (Clone)', why:'Both share ambroxan / woody DNA — layering deepens projection.'}],
-    '9pm':    [{name:'Khamrah', why:'Both are dark, spicy and sweet — layering doubles the sillage and complexity.'}],
-    'kham':   [{name:'Asad Bourbon', why:'Bourbon and oud-vanilla is a potent, rich combination for cold evenings.'}],
-    'tev-br': [{name:'9PM', why:'BR540 amber base over 9PM spice creates an opulent, club-ready blend.'}],
-    'absg':   [{name:'Asad Bourbon', why:'Leather and bourbon create a spiced, aged-whisky effect.'}],
-  };
+    function addFragrance() {
+      const house = document.getElementById('f-house').value.trim();
+      const name = document.getElementById('f-name').value.trim();
+      const type = document.getElementById('f-type').value;
+      const family = document.getElementById('f-family').value;
+      const season = document.getElementById('f-season').value;
+      const occasion = document.getElementById('f-occasion').value;
+      const notes = document.getElementById('f-notes').value.trim();
+      const tags = document.getElementById('f-tags').value.split(',').map(t => t.trim().toLowerCase()).filter(Boolean);
 
-  if (SPECIFIC[f.id]) {
-    SPECIFIC[f.id].forEach(hint => {
-      const match = collection.find(x => x.name === hint.name);
-      if (match && !seen.has(match.id)) {
-        seen.add(match.id);
-        results.push({ ...match, reason: hint.why, owned: true });
+      if (!house || !name) {
+        alert('House and Fragrance Name are required.');
+        return;
+      }
+
+      const id = 'user-' + Date.now();
+      collection.push({ id, house, name, type, family, season, occasion, notes, tags });
+      saveCollection();
+      closeModal('addOverlay');
+      renderGrid();
+    }
+
+    // ── DELETE ───────────────────────────────────────────────────────────────
+    function deleteFragrance(e, id) {
+      e.stopPropagation();
+      if (!confirm('Remove this fragrance from your collection?')) return;
+      collection = collection.filter(f => f.id !== id);
+      saveCollection();
+      renderGrid();
+    }
+
+    // ── MODAL HELPERS ────────────────────────────────────────────────────────
+    function closeModal(overlayId) {
+      document.getElementById(overlayId).classList.remove('open');
+    }
+
+    function handleOverlayClick(e, overlayId) {
+      if (e.target.id === overlayId) closeModal(overlayId);
+    }
+
+    // ── UTILS ────────────────────────────────────────────────────────────────
+    function escHtml(s) {
+      return String(s || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function capitalise(s) {
+      return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+    }
+
+    // ── KEYBOARD ─────────────────────────────────────────────────────────────
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal('detailOverlay');
+        closeModal('addOverlay');
       }
     });
-  }
 
-  return results.slice(0, 8);
-}
+    // ── SPRAY MAP ENGINE ─────────────────────────────────────────────────────
+    // Each zone: id, label, tip, position on figure (% from top-left of SVG container),
+    // dot color tier (primary / secondary / optional), sprays count
 
-// ── ADD FRAGRANCE ────────────────────────────────────────────────────────
-function openAddModal() {
-  ['f-house','f-name','f-notes','f-tags'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('addOverlay').classList.add('open');
-}
+    const ZONES = [
+      {
+        id: 'neck-front', label: 'Neck Front', sprays: 1,
+        tip: 'Pulse point — heat drives the scent upward into a natural cloud around your face.',
+        x: 50, y: 11.5
+      },
+      {
+        id: 'neck-left', label: 'Neck Left', sprays: 1,
+        tip: 'Side pulse points diffuse scent outward, creating a wider sillage trail.',
+        x: 37, y: 12.5
+      },
+      {
+        id: 'neck-right', label: 'Neck Right', sprays: 1,
+        tip: 'Pair with neck left for balanced projection on both sides.',
+        x: 63, y: 12.5
+      },
+      {
+        id: 'neck-back', label: 'Nape / Back of Neck', sprays: 1,
+        tip: 'Releases scent as you move — excellent for leaving a trail. Often overlooked.',
+        x: 50, y: 14.5
+      },
+      {
+        id: 'chest', label: 'Chest', sprays: 1,
+        tip: 'Warm skin and proximity to others makes this ideal for date-night and evening wear.',
+        x: 50, y: 26
+      },
+      {
+        id: 'wrist-left', label: 'Left Wrist', sprays: 1,
+        tip: 'Classic pulse point. Do not rub — it crushes top notes.',
+        x: 18, y: 52
+      },
+      {
+        id: 'wrist-right', label: 'Right Wrist', sprays: 1,
+        tip: 'Apply to one wrist only if the fragrance is strong — both can overpower.',
+        x: 82, y: 52
+      },
+      {
+        id: 'forearm-l', label: 'Inner Forearm (L)', sprays: 1,
+        tip: 'Larger surface area than wrists — good for projection on lighter fragrances.',
+        x: 22, y: 44
+      },
+      {
+        id: 'forearm-r', label: 'Inner Forearm (R)', sprays: 1,
+        tip: 'Mirror of the left — use for heavy sillage beasts sparingly.',
+        x: 78, y: 44
+      },
+      {
+        id: 'clothes-chest', label: 'Clothes — Chest / Collar', sprays: 1,
+        tip: 'Fabric holds fragrance far longer than skin. Great for longevity on reformulated or lighter juice.',
+        x: 50, y: 29
+      },
+      {
+        id: 'clothes-hair', label: 'Hair', sprays: 1,
+        tip: 'Hair is an exceptional diffuser — a light mist on the back of the head creates an aura effect. Hold 30cm away.',
+        x: 50, y: 4
+      },
+    ];
 
-function addFragrance() {
-  const house    = document.getElementById('f-house').value.trim();
-  const name     = document.getElementById('f-name').value.trim();
-  const type     = document.getElementById('f-type').value;
-  const family   = document.getElementById('f-family').value;
-  const season   = document.getElementById('f-season').value;
-  const occasion = document.getElementById('f-occasion').value;
-  const notes    = document.getElementById('f-notes').value.trim();
-  const tags     = document.getElementById('f-tags').value.split(',').map(t=>t.trim().toLowerCase()).filter(Boolean);
+    // Per-family spray profile:
+    // primary = always recommended, secondary = good addition, optional = light/situational
+    const FAMILY_PROFILES = {
+      'Fresh / Citrus': {
+        primary: ['neck-front', 'neck-left', 'neck-right', 'chest'],
+        secondary: ['wrist-left', 'wrist-right', 'clothes-hair'],
+        optional: ['clothes-chest'],
+        note: 'Fresh citrus fragrances project best from warm pulse points. Avoid clothes — fabric can yellow or mute citrus top notes. Hair is excellent for a natural diffusion effect.',
+        totalSprays: 3
+      },
+      'Woody / Aromatic': {
+        primary: ['neck-front', 'chest', 'wrist-left'],
+        secondary: ['neck-left', 'neck-right', 'forearm-l', 'clothes-chest'],
+        optional: ['wrist-right', 'neck-back'],
+        note: 'Woody aromatic fragrances are versatile and moderate — 3–4 sprays is the sweet spot. Clothes amplify the dry woody base note beautifully, especially on shirts.',
+        totalSprays: 4
+      },
+      'Oriental / Oud': {
+        primary: ['neck-front', 'chest', 'clothes-chest'],
+        secondary: ['neck-back', 'wrist-left', 'neck-left', 'neck-right'],
+        optional: ['clothes-hair'],
+        note: 'Oud and oriental fragrances are powerful — start with 2–3 sprays maximum. Clothes hold the depth of the base notes exceptionally well. Avoid pulse points near the face in warm weather or enclosed spaces.',
+        totalSprays: 2
+      },
+      'Spicy / Sensual': {
+        primary: ['neck-front', 'chest', 'wrist-left'],
+        secondary: ['neck-left', 'neck-right', 'neck-back', 'clothes-chest'],
+        optional: ['forearm-l'],
+        note: 'Spicy sensual fragrances bloom with body heat — chest and neck are perfect. These can be heavy; 2–3 sprays is plenty. The nape creates an intimate trail.',
+        totalSprays: 3
+      },
+      'Aquatic / Marine': {
+        primary: ['neck-front', 'neck-left', 'neck-right', 'chest'],
+        secondary: ['wrist-left', 'forearm-l', 'clothes-hair'],
+        optional: ['clothes-chest'],
+        note: 'Aquatic fragrances are designed for open-air projection. Layer across neck points and let the natural air movement do the work. Hair is especially effective for marine notes.',
+        totalSprays: 4
+      },
+      'Amber / Floral': {
+        primary: ['neck-front', 'chest', 'wrist-left', 'wrist-right'],
+        secondary: ['neck-left', 'neck-right', 'clothes-chest'],
+        optional: ['clothes-hair', 'neck-back'],
+        note: 'Amber florals evolve throughout the day — pulse points allow the heart and base to develop naturally on skin. Clothes extend the warm amber drydown significantly.',
+        totalSprays: 4
+      },
+      'Fougère / Classic': {
+        primary: ['neck-front', 'chest', 'wrist-left'],
+        secondary: ['neck-left', 'neck-right', 'forearm-l', 'clothes-chest'],
+        optional: ['neck-back'],
+        note: 'Classic fougères project cleanly from pulse points. The chest is the anchor — lavender and oakmoss develop beautifully here. A shirt spray significantly extends longevity.',
+        totalSprays: 3
+      },
+      'Sweet / Gourmand': {
+        primary: ['neck-front', 'chest', 'wrist-left'],
+        secondary: ['neck-left', 'neck-right', 'clothes-chest'],
+        optional: ['neck-back', 'forearm-l'],
+        note: 'Gourmand fragrances are sweet and rich — apply conservatively. 2–3 sprays on pulse points is usually enough. Avoid over-applying; sweetness compounds quickly.',
+        totalSprays: 3
+      },
+      'Leather': {
+        primary: ['chest', 'clothes-chest', 'neck-front'],
+        secondary: ['wrist-left', 'neck-back', 'neck-left', 'neck-right'],
+        optional: ['forearm-l'],
+        note: 'Leather fragrances shine on fabric — the dry, smoky character is amplified by clothing fibres. A chest/collar spray is essential. Skin applications add warmth to the accord.',
+        totalSprays: 3
+      },
+      'Smoke / Incense': {
+        primary: ['chest', 'clothes-chest', 'neck-front'],
+        secondary: ['neck-back', 'wrist-left', 'neck-left'],
+        optional: ['clothes-hair'],
+        note: 'Incense and smoke fragrances are made for fabric — they cling and develop beautifully on clothing. Hair is exceptional for a trailing smoke effect. Use sparingly on skin in enclosed spaces.',
+        totalSprays: 2
+      },
+      'Green / Herbal': {
+        primary: ['neck-front', 'neck-left', 'neck-right', 'wrist-left'],
+        secondary: ['chest', 'forearm-l', 'clothes-hair'],
+        optional: ['clothes-chest'],
+        note: 'Green herbal fragrances project naturally from the upper body. Hair disperses the green herbal character wonderfully in the breeze.',
+        totalSprays: 3
+      },
+    };
 
-  if (!house || !name) {
-    alert('House and Fragrance Name are required.');
-    return;
-  }
+    // Dot colours — tiered priority
+    const DOT_COLORS = {
+      primary: '#c8813a',
+      secondary: '#6b9e6b',
+      optional: '#5a7fa0',
+    };
 
-  const id = 'user-' + Date.now();
-  collection.push({ id, house, name, type, family, season, occasion, notes, tags });
-  saveCollection();
-  closeModal('addOverlay');
-  renderGrid();
-}
-
-// ── DELETE ───────────────────────────────────────────────────────────────
-function deleteFragrance(e, id) {
-  e.stopPropagation();
-  if (!confirm('Remove this fragrance from your collection?')) return;
-  collection = collection.filter(f => f.id !== id);
-  saveCollection();
-  renderGrid();
-}
-
-// ── MODAL HELPERS ────────────────────────────────────────────────────────
-function closeModal(overlayId) {
-  document.getElementById(overlayId).classList.remove('open');
-}
-
-function handleOverlayClick(e, overlayId) {
-  if (e.target.id === overlayId) closeModal(overlayId);
-}
-
-// ── UTILS ────────────────────────────────────────────────────────────────
-function escHtml(s) {
-  return String(s||'')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
-}
-
-function capitalise(s) {
-  return s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
-}
-
-// ── KEYBOARD ─────────────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal('detailOverlay');
-    closeModal('addOverlay');
-  }
-});
-
-// ── SPRAY MAP ENGINE ─────────────────────────────────────────────────────
-// Each zone: id, label, tip, position on figure (% from top-left of SVG container),
-// dot color tier (primary / secondary / optional), sprays count
-
-const ZONES = [
-  { id:'neck-front',  label:'Neck Front',   sprays:1,
-    tip:'Pulse point — heat drives the scent upward into a natural cloud around your face.',
-    x:50, y:11.5 },
-  { id:'neck-left',   label:'Neck Left',    sprays:1,
-    tip:'Side pulse points diffuse scent outward, creating a wider sillage trail.',
-    x:37, y:12.5 },
-  { id:'neck-right',  label:'Neck Right',   sprays:1,
-    tip:'Pair with neck left for balanced projection on both sides.',
-    x:63, y:12.5 },
-  { id:'neck-back',   label:'Nape / Back of Neck', sprays:1,
-    tip:'Releases scent as you move — excellent for leaving a trail. Often overlooked.',
-    x:50, y:14.5 },
-  { id:'chest',       label:'Chest',        sprays:1,
-    tip:'Warm skin and proximity to others makes this ideal for date-night and evening wear.',
-    x:50, y:26 },
-  { id:'wrist-left',  label:'Left Wrist',   sprays:1,
-    tip:'Classic pulse point. Do not rub — it crushes top notes.',
-    x:18, y:52 },
-  { id:'wrist-right', label:'Right Wrist',  sprays:1,
-    tip:'Apply to one wrist only if the fragrance is strong — both can overpower.',
-    x:82, y:52 },
-  { id:'forearm-l',   label:'Inner Forearm (L)', sprays:1,
-    tip:'Larger surface area than wrists — good for projection on lighter fragrances.',
-    x:22, y:44 },
-  { id:'forearm-r',   label:'Inner Forearm (R)', sprays:1,
-    tip:'Mirror of the left — use for heavy sillage beasts sparingly.',
-    x:78, y:44 },
-  { id:'clothes-chest', label:'Clothes — Chest / Collar', sprays:1,
-    tip:'Fabric holds fragrance far longer than skin. Great for longevity on reformulated or lighter juice.',
-    x:50, y:29 },
-  { id:'clothes-hair',  label:'Hair',       sprays:1,
-    tip:'Hair is an exceptional diffuser — a light mist on the back of the head creates an aura effect. Hold 30cm away.',
-    x:50, y:4 },
-];
-
-// Per-family spray profile:
-// primary = always recommended, secondary = good addition, optional = light/situational
-const FAMILY_PROFILES = {
-  'Fresh / Citrus': {
-    primary:   ['neck-front','neck-left','neck-right','chest'],
-    secondary: ['wrist-left','wrist-right','clothes-hair'],
-    optional:  ['clothes-chest'],
-    note: 'Fresh citrus fragrances project best from warm pulse points. Avoid clothes — fabric can yellow or mute citrus top notes. Hair is excellent for a natural diffusion effect.',
-    totalSprays: 3
-  },
-  'Woody / Aromatic': {
-    primary:   ['neck-front','chest','wrist-left'],
-    secondary: ['neck-left','neck-right','forearm-l','clothes-chest'],
-    optional:  ['wrist-right','neck-back'],
-    note: 'Woody aromatic fragrances are versatile and moderate — 3–4 sprays is the sweet spot. Clothes amplify the dry woody base note beautifully, especially on shirts.',
-    totalSprays: 4
-  },
-  'Oriental / Oud': {
-    primary:   ['neck-front','chest','clothes-chest'],
-    secondary: ['neck-back','wrist-left','neck-left','neck-right'],
-    optional:  ['clothes-hair'],
-    note: 'Oud and oriental fragrances are powerful — start with 2–3 sprays maximum. Clothes hold the depth of the base notes exceptionally well. Avoid pulse points near the face in warm weather or enclosed spaces.',
-    totalSprays: 2
-  },
-  'Spicy / Sensual': {
-    primary:   ['neck-front','chest','wrist-left'],
-    secondary: ['neck-left','neck-right','neck-back','clothes-chest'],
-    optional:  ['forearm-l'],
-    note: 'Spicy sensual fragrances bloom with body heat — chest and neck are perfect. These can be heavy; 2–3 sprays is plenty. The nape creates an intimate trail.',
-    totalSprays: 3
-  },
-  'Aquatic / Marine': {
-    primary:   ['neck-front','neck-left','neck-right','chest'],
-    secondary: ['wrist-left','forearm-l','clothes-hair'],
-    optional:  ['clothes-chest'],
-    note: 'Aquatic fragrances are designed for open-air projection. Layer across neck points and let the natural air movement do the work. Hair is especially effective for marine notes.',
-    totalSprays: 4
-  },
-  'Amber / Floral': {
-    primary:   ['neck-front','chest','wrist-left','wrist-right'],
-    secondary: ['neck-left','neck-right','clothes-chest'],
-    optional:  ['clothes-hair','neck-back'],
-    note: 'Amber florals evolve throughout the day — pulse points allow the heart and base to develop naturally on skin. Clothes extend the warm amber drydown significantly.',
-    totalSprays: 4
-  },
-  'Fougère / Classic': {
-    primary:   ['neck-front','chest','wrist-left'],
-    secondary: ['neck-left','neck-right','forearm-l','clothes-chest'],
-    optional:  ['neck-back'],
-    note: 'Classic fougères project cleanly from pulse points. The chest is the anchor — lavender and oakmoss develop beautifully here. A shirt spray significantly extends longevity.',
-    totalSprays: 3
-  },
-  'Sweet / Gourmand': {
-    primary:   ['neck-front','chest','wrist-left'],
-    secondary: ['neck-left','neck-right','clothes-chest'],
-    optional:  ['neck-back','forearm-l'],
-    note: 'Gourmand fragrances are sweet and rich — apply conservatively. 2–3 sprays on pulse points is usually enough. Avoid over-applying; sweetness compounds quickly.',
-    totalSprays: 3
-  },
-  'Leather': {
-    primary:   ['chest','clothes-chest','neck-front'],
-    secondary: ['wrist-left','neck-back','neck-left','neck-right'],
-    optional:  ['forearm-l'],
-    note: 'Leather fragrances shine on fabric — the dry, smoky character is amplified by clothing fibres. A chest/collar spray is essential. Skin applications add warmth to the accord.',
-    totalSprays: 3
-  },
-  'Smoke / Incense': {
-    primary:   ['chest','clothes-chest','neck-front'],
-    secondary: ['neck-back','wrist-left','neck-left'],
-    optional:  ['clothes-hair'],
-    note: 'Incense and smoke fragrances are made for fabric — they cling and develop beautifully on clothing. Hair is exceptional for a trailing smoke effect. Use sparingly on skin in enclosed spaces.',
-    totalSprays: 2
-  },
-  'Green / Herbal': {
-    primary:   ['neck-front','neck-left','neck-right','wrist-left'],
-    secondary: ['chest','forearm-l','clothes-hair'],
-    optional:  ['clothes-chest'],
-    note: 'Green herbal fragrances project naturally from the upper body. Hair disperses the green herbal character wonderfully in the breeze.',
-    totalSprays: 3
-  },
-};
-
-// Dot colours — tiered priority
-const DOT_COLORS = {
-  primary:   '#c8813a',
-  secondary: '#6b9e6b',
-  optional:  '#5a7fa0',
-};
-
-// SVG body silhouette — minimal but recognisable, front-facing
-const BODY_SVG = `
+    // SVG body silhouette — minimal but recognisable, front-facing
+    const BODY_SVG = `
 <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
   <defs>
     <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="0">
@@ -1502,43 +1933,43 @@ const BODY_SVG = `
   <path d="M80,82 Q100,96 120,82" fill="none" stroke="#6a5a48" stroke-width="1" stroke-dasharray="3,2"/>
 </svg>`;
 
-function buildSprayMap(f) {
-  const profile = FAMILY_PROFILES[f.family] || FAMILY_PROFILES['Woody / Aromatic'];
-  const figureEl = document.getElementById('d-spray-figure');
-  const legendEl = document.getElementById('d-spray-legend');
-  const noteEl   = document.getElementById('d-spray-note');
+    function buildSprayMap(f) {
+      const profile = FAMILY_PROFILES[f.family] || FAMILY_PROFILES['Woody / Aromatic'];
+      const figureEl = document.getElementById('d-spray-figure');
+      const legendEl = document.getElementById('d-spray-legend');
+      const noteEl = document.getElementById('d-spray-note');
 
-  // Inject SVG
-  figureEl.innerHTML = BODY_SVG;
+      // Inject SVG
+      figureEl.innerHTML = BODY_SVG;
 
-  // Determine active zone set
-  const primarySet   = new Set(profile.primary);
-  const secondarySet = new Set(profile.secondary);
-  const optionalSet  = new Set(profile.optional || []);
+      // Determine active zone set
+      const primarySet = new Set(profile.primary);
+      const secondarySet = new Set(profile.secondary);
+      const optionalSet = new Set(profile.optional || []);
 
-  // Occasion modifier: if date/evening, boost neck-back and chest
-  const isDateEvening = ['Date Night','Formal / Evening'].includes(f.occasion);
-  const isOffice      = f.occasion === 'Office';
-  const isSport       = f.occasion === 'Sport / Active';
-  const isSummer      = ['Summer','Spring / Summer','Summer / Holiday'].includes(f.season);
+      // Occasion modifier: if date/evening, boost neck-back and chest
+      const isDateEvening = ['Date Night', 'Formal / Evening'].includes(f.occasion);
+      const isOffice = f.occasion === 'Office';
+      const isSport = f.occasion === 'Sport / Active';
+      const isSummer = ['Summer', 'Spring / Summer', 'Summer / Holiday'].includes(f.season);
 
-  // Place dots on figure
-  ZONES.forEach(zone => {
-    let tier = null;
-    if (primarySet.has(zone.id))   tier = 'primary';
-    if (secondarySet.has(zone.id)) tier = 'secondary';
-    if (optionalSet.has(zone.id))  tier = 'optional';
+      // Place dots on figure
+      ZONES.forEach(zone => {
+        let tier = null;
+        if (primarySet.has(zone.id)) tier = 'primary';
+        if (secondarySet.has(zone.id)) tier = 'secondary';
+        if (optionalSet.has(zone.id)) tier = 'optional';
 
-    // Occasion adjustments
-    if (isDateEvening && zone.id === 'neck-back' && !tier) tier = 'secondary';
-    if (isOffice && zone.id === 'clothes-chest' && tier !== 'primary') tier = 'secondary';
-    if (isSport && ['clothes-chest','wrist-right','forearm-r'].includes(zone.id)) tier = null;
-    if (isSummer && zone.id === 'clothes-chest' && tier === 'primary') tier = 'secondary';
+        // Occasion adjustments
+        if (isDateEvening && zone.id === 'neck-back' && !tier) tier = 'secondary';
+        if (isOffice && zone.id === 'clothes-chest' && tier !== 'primary') tier = 'secondary';
+        if (isSport && ['clothes-chest', 'wrist-right', 'forearm-r'].includes(zone.id)) tier = null;
+        if (isSummer && zone.id === 'clothes-chest' && tier === 'primary') tier = 'secondary';
 
-    const dot = document.createElement('div');
-    dot.className = 'spray-dot ' + (tier ? 'active' : 'inactive');
-    const size = tier === 'primary' ? 14 : tier === 'secondary' ? 11 : tier === 'optional' ? 9 : 8;
-    dot.style.cssText = `
+        const dot = document.createElement('div');
+        dot.className = 'spray-dot ' + (tier ? 'active' : 'inactive');
+        const size = tier === 'primary' ? 14 : tier === 'secondary' ? 11 : tier === 'optional' ? 9 : 8;
+        dot.style.cssText = `
       left: ${zone.x}%;
       top:  ${zone.y}%;
       width:  ${size}px;
@@ -1546,36 +1977,36 @@ function buildSprayMap(f) {
       background: ${tier ? DOT_COLORS[tier] : 'rgba(90,78,64,0.4)'};
       border-color: ${tier ? 'var(--ink)' : 'rgba(90,78,64,0.5)'};
     `;
-    figureEl.appendChild(dot);
-  });
+        figureEl.appendChild(dot);
+      });
 
-  // Build legend
-  const allActive = [
-    ...profile.primary.map(id => ({ id, tier:'primary' })),
-    ...profile.secondary.map(id => ({ id, tier:'secondary' })),
-    ...(profile.optional||[]).map(id => ({ id, tier:'optional' })),
-  ];
+      // Build legend
+      const allActive = [
+        ...profile.primary.map(id => ({ id, tier: 'primary' })),
+        ...profile.secondary.map(id => ({ id, tier: 'secondary' })),
+        ...(profile.optional || []).map(id => ({ id, tier: 'optional' })),
+      ];
 
-  // Apply occasion adjustments to legend too
-  const legendZones = allActive.filter(a => {
-    if (isSport && ['clothes-chest','wrist-right','forearm-r'].includes(a.id)) return false;
-    return true;
-  });
-  if (isDateEvening) {
-    const hasNeckBack = legendZones.find(a => a.id === 'neck-back');
-    if (!hasNeckBack) legendZones.push({ id:'neck-back', tier:'secondary' });
-  }
-  if (isOffice) {
-    const hasClothes = legendZones.find(a => a.id === 'clothes-chest');
-    if (!hasClothes) legendZones.push({ id:'clothes-chest', tier:'secondary' });
-  }
+      // Apply occasion adjustments to legend too
+      const legendZones = allActive.filter(a => {
+        if (isSport && ['clothes-chest', 'wrist-right', 'forearm-r'].includes(a.id)) return false;
+        return true;
+      });
+      if (isDateEvening) {
+        const hasNeckBack = legendZones.find(a => a.id === 'neck-back');
+        if (!hasNeckBack) legendZones.push({ id: 'neck-back', tier: 'secondary' });
+      }
+      if (isOffice) {
+        const hasClothes = legendZones.find(a => a.id === 'clothes-chest');
+        if (!hasClothes) legendZones.push({ id: 'clothes-chest', tier: 'secondary' });
+      }
 
-  legendEl.innerHTML = legendZones.map(a => {
-    const zone = ZONES.find(z => z.id === a.id);
-    if (!zone) return '';
-    const color = DOT_COLORS[a.tier];
-    const tierLabel = a.tier === 'primary' ? 'Essential' : a.tier === 'secondary' ? 'Recommended' : 'Optional';
-    return `
+      legendEl.innerHTML = legendZones.map(a => {
+        const zone = ZONES.find(z => z.id === a.id);
+        if (!zone) return '';
+        const color = DOT_COLORS[a.tier];
+        const tierLabel = a.tier === 'primary' ? 'Essential' : a.tier === 'secondary' ? 'Recommended' : 'Optional';
+        return `
       <div class="spray-zone active">
         <div class="spray-zone-dot" style="background:${color}"></div>
         <div class="spray-zone-info">
@@ -1584,54 +2015,55 @@ function buildSprayMap(f) {
           <div class="spray-zone-sprays" style="color:${color}">${tierLabel} · ${zone.sprays} spray</div>
         </div>
       </div>`;
-  }).join('');
+      }).join('');
 
-  // Total sprays callout
-  let sprayCount = profile.totalSprays;
-  if (isDateEvening) sprayCount = Math.min(sprayCount + 1, 5);
-  if (isSport) sprayCount = Math.max(sprayCount - 1, 2);
+      // Total sprays callout
+      let sprayCount = profile.totalSprays;
+      if (isDateEvening) sprayCount = Math.min(sprayCount + 1, 5);
+      if (isSport) sprayCount = Math.max(sprayCount - 1, 2);
 
-  noteEl.textContent = `💡 ${profile.note} Total recommended: ${sprayCount}–${sprayCount + 1} sprays.`;
-}
+      noteEl.textContent = `💡 ${profile.note} Total recommended: ${sprayCount}–${sprayCount + 1} sprays.`;
+    }
 
-// ── EXPORT FOR FRIEND ────────────────────────────────────────────────────
-function exportForFriend() {
-  // Grab current live collection from memory (includes all user edits)
-  const liveCollection = JSON.stringify(collection);
+    // ── EXPORT FOR FRIEND ────────────────────────────────────────────────────
+    function exportForFriend() {
+      // Grab current live collection from memory (includes all user edits)
+      const liveCollection = JSON.stringify(collection);
 
-  // Read the entire source of this page
-  const source = document.documentElement.outerHTML;
+      // Read the entire source of this page
+      const source = document.documentElement.outerHTML;
 
-  // Replace the DEFAULT_COLLECTION definition with the current live data
-  // We target the const declaration precisely so we don't touch anything else
-  const exported = source.replace(
-    /const DEFAULT_COLLECTION = \[[\s\S]*?\];/,
-    'const DEFAULT_COLLECTION = ' + liveCollection + ';'
-  );
+      // Replace the DEFAULT_COLLECTION definition with the current live data
+      // We target the const declaration precisely so we don't touch anything else
+      const exported = source.replace(
+        /const DEFAULT_COLLECTION = \[[\s\S]*?\];/,
+        'const DEFAULT_COLLECTION = ' + liveCollection + ';'
+      );
 
-  // Also clear any stale localStorage key in the exported file so the
-  // recipient starts fresh from the baked-in data rather than inheriting
-  // any leftover localStorage from their own browser
-  const cleaned = exported.replace(
-    'loadCollection();',
-    'localStorage.removeItem(\'theShelf\');\nloadCollection();'
-  );
+      // Also clear any stale localStorage key in the exported file so the
+      // recipient starts fresh from the baked-in data rather than inheriting
+      // any leftover localStorage from their own browser
+      const cleaned = exported.replace(
+        'loadCollection();',
+        'localStorage.removeItem(\'theShelf\');\nloadCollection();'
+      );
 
-  // Build a downloadable blob and trigger download
-  const blob = new Blob([cleaned], { type: 'text/html;charset=utf-8' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = 'the-shelf.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
+      // Build a downloadable blob and trigger download
+      const blob = new Blob([cleaned], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'the-shelf.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
 
-// ── INIT ─────────────────────────────────────────────────────────────────
-loadCollection();
-renderGrid();
-</script>
+    // ── INIT ─────────────────────────────────────────────────────────────────
+    loadCollection();
+    renderGrid();
+  </script>
 </body>
+
 </html>
