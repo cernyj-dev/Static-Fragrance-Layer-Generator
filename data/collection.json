@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-19T13:45:00.672Z",
+  "updatedAt": "2026-07-07T16:53:03.400Z",
   "collection": [
     {
       "id": "lat-aon2",
@@ -133,7 +133,7 @@
       "house": "Afnan",
       "name": "Freedom",
       "type": "middle-eastern",
-      "family": "FougÃÂÃÂ¨re / Classic",
+      "family": "FougÃÂÃÂÃÂÃÂ¨re / Classic",
       "season": "Spring / Summer",
       "occasion": "Casual",
       "notes": "bergamot, grapefruit, sage, cardamom, juniper berry, lavender, caramel, oriental notes, vetiver",
@@ -253,6 +253,23 @@
         "dark",
         "masculine",
         "evening"
+      ]
+    },
+    {
+      "id": "user-1783443183400",
+      "house": "Orientica",
+      "name": "Royal Bleu",
+      "type": "clone",
+      "family": "Woody / Aromatic",
+      "season": "All Year",
+      "occasion": "Versatile",
+      "notes": "green apple, lavender, vanilla, cardamom, sandalwood, guaiac wood",
+      "tags": [
+        "compliment-getter",
+        "clubbing",
+        "versatile",
+        "date nights",
+        "evenings"
       ]
     }
   ]
