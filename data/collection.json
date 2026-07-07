@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-07T16:57:32.887Z",
+  "updatedAt": "2026-07-07T16:58:21.051Z",
   "collection": [
     {
       "id": "lat-aon2",
@@ -50,7 +50,8 @@
         "office",
         "earthy",
         "classic",
-        "signature"
+        "signature",
+        "daily dumb grab"
       ]
     },
     {
@@ -140,7 +141,7 @@
       "house": "Afnan",
       "name": "Freedom",
       "type": "middle-eastern",
-      "family": "FougÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨re / Classic",
+      "family": "FougÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¨re / Classic",
       "season": "Spring / Summer",
       "occasion": "Casual",
       "notes": "bergamot, grapefruit, sage, cardamom, juniper berry, lavender, caramel, oriental notes, vetiver",
